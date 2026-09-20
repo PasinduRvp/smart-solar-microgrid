@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ScheduleEntry.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-17
  * Description : Opening hours for a microgrid node on one day of the week.
  *               A station holds a collection of these, which Backoffice
