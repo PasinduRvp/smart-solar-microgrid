@@ -141,3 +141,48 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# =============================================================
+# .NET / ASP.NET Core Web API  ->  backend/
+# =============================================================
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+
+# Secrets: Mongo connection string, JWT signing key. NEVER commit.
+# A committed *.example.json template shows the shape instead.
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+secrets.json
+
+# IIS publish output
+publish/
+*.pubxml.user
+
+# =============================================================
+# Android (pure native)  ->  mobile/     [used from Phase E]
+# =============================================================
+local.properties
+.gradle/
+*/build/
+*.apk
+*.aab
+*.keystore
+*.jks
+.cxx/
+captures/
+.idea/
+
+# =============================================================
+# Windows / editor noise
+# =============================================================
+Thumbs.db
+desktop.ini
+*.swp
