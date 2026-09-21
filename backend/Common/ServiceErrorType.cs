@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ServiceErrorType.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : Categories of failure a service operation can report. The
  *               controller maps each category onto an HTTP status code.

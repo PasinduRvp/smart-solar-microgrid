@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : EntityBase.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-17
  * Description : Abstract base class shared by every document stored in MongoDB.
  *               Holds the identity and audit fields that all four collections
