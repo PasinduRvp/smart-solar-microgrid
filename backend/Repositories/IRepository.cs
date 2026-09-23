@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : IRepository.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-17
  * Description : Generic data access contract shared by every entity in the
  *               system. Services depend on this interface, so they can be
