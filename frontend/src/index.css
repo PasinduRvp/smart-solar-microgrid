@@ -1,0 +1,696 @@
+/*
+ * ---------------------------------------------------------------------------
+ * File        : index.css
+ * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
+ * Author      : <Your Full Name> (<IT Number>)
+ * Created     : 2026-09-20
+ * Description : The project's own styles, layered on top of Bootstrap 5.
+ *               Bootstrap does the grid, components and responsiveness; this
+ *               file supplies the visual identity — the solar palette, the
+ *               heading typeface, and the landing page treatment.
+ *
+ * Approach    : Bootstrap is customised through its CSS variables rather than
+ *               by overriding its component rules. Setting --bs-btn-bg on
+ *               .btn-primary keeps every state Bootstrap defines (hover, focus
+ *               ring, disabled) working, whereas a plain "background: amber"
+ *               would break them and need each state rewritten by hand.
+ * ---------------------------------------------------------------------------
+ */
+
+:root {
+  /* --- Solar palette -----------------------------------------------------
+     Amber rather than Bootstrap's default blue, because the subject is solar
+     energy. The dark tone is a warm near-black rather than a cold grey, so it
+     sits beside the amber without the two looking like different schemes. */
+  --solar-amber: #b4690e;
+  --solar-amber-bright: #f0a830;
+  --solar-amber-soft: #fdf3e3;
+  --solar-night: #17130d;
+  --solar-night-soft: #241d14;
+
+  --bs-primary: var(--solar-amber);
+  --bs-primary-rgb: 180, 105, 14;
+
+  --bs-link-color: var(--solar-amber);
+  --bs-link-hover-color: #8a5008;
+  --bs-link-color-rgb: 180, 105, 14;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Archivo for headings only. A sturdy grotesque gives the interface some
+   character while Bootstrap's system stack keeps body text and form controls
+   rendering natively on every platform. */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Bootstrap reads these variables for every button state, so the accent applies
+   without any component rule being overridden. */
+.btn-primary {
+  --bs-btn-bg: var(--solar-amber);
+  --bs-btn-border-color: var(--solar-amber);
+  --bs-btn-hover-bg: #9a5a0c;
+  --bs-btn-hover-border-color: #9a5a0c;
+  --bs-btn-active-bg: #7d4906;
+  --bs-btn-active-border-color: #7d4906;
+  --bs-btn-disabled-bg: var(--solar-amber);
+  --bs-btn-disabled-border-color: var(--solar-amber);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--solar-amber);
+  --bs-btn-border-color: var(--solar-amber);
+  --bs-btn-hover-bg: var(--solar-amber);
+  --bs-btn-hover-border-color: var(--solar-amber);
+  --bs-btn-active-bg: #7d4906;
+  --bs-btn-active-border-color: #7d4906;
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--solar-amber);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--solar-amber-bright);
+  box-shadow: 0 0 0 0.2rem rgba(180, 105, 14, 0.18);
+}
+
+.form-check-input:checked {
+  background-color: var(--solar-amber);
+  border-color: var(--solar-amber);
+}
+
+/* Keeps the active navigation item legible against the dark bar. */
+.navbar-dark .nav-link.active,
+.navbar .nav-link.active {
+  color: var(--solar-amber-bright) !important;
+}
+
+/* ===========================================================================
+   Landing page
+   ===========================================================================
+   Only the public index page uses these. Everything behind sign in stays on
+   plain Bootstrap, because an administrative screen is read and operated
+   rather than browsed, and decoration there would get in the way.
+   =========================================================================== */
+
+.landing-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--solar-night);
+  color: #f7f3ec;
+}
+
+/* A soft sunrise behind the headline. Two radial gradients rather than an
+   image: nothing to download, and it scales to any screen without blurring. */
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60rem 30rem at 78% -10%, rgba(240, 168, 48, 0.28), transparent 60%),
+    radial-gradient(40rem 24rem at 10% 110%, rgba(180, 105, 14, 0.22), transparent 62%);
+  pointer-events: none;
+}
+
+.landing-hero > * {
+  position: relative;
+}
+
+.landing-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--solar-amber-bright);
+}
+
+.landing-hero-title {
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.landing-lead {
+  color: rgba(247, 243, 236, 0.72);
+  max-width: 34rem;
+}
+
+/* The figures strip under the hero. */
+.landing-figure {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--solar-amber-bright);
+  font-variant-numeric: tabular-nums;
+}
+
+.landing-figure-label {
+  font-size: 0.78rem;
+  color: rgba(247, 243, 236, 0.62);
+}
+
+/* Feature and role cards: a quiet lift on hover so they read as interactive
+   without animating on their own. */
+.landing-card {
+  border: 1px solid #ece7df;
+  border-radius: 0.75rem;
+  background: #fff;
+  height: 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.landing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.75rem 1.5rem rgba(23, 19, 13, 0.08);
+}
+
+.landing-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.6rem;
+  background: var(--solar-amber-soft);
+  color: var(--solar-amber);
+}
+
+/* The numbered steps in "How it works". The number is part of the content
+   here — the steps genuinely happen in this order — rather than decoration. */
+.landing-step-number {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--solar-night);
+  color: var(--solar-amber-bright);
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex: none;
+}
+
+.landing-section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--solar-amber);
+}
+
+/* Respect a reduced-motion preference: the hover lift is a nicety, not
+   information, so it is simply switched off. */
+@media (prefers-reduced-motion: reduce) {
+  .landing-card {
+    transition: none;
+  }
+  .landing-card:hover {
+    transform: none;
+  }
+}
+
+/* ===========================================================================
+   Application shell
+   ===========================================================================
+   The screens behind sign in are an administrative tool: they are scanned and
+   operated rather than read, so the styling here is about density, hierarchy
+   and legibility rather than decoration. A fixed sidebar keeps every section
+   one click away and gives the interface a stable frame, which matters when a
+   user moves between nodes, bookings and accounts all day.
+   =========================================================================== */
+
+:root {
+  --app-sidebar-width: 15rem;
+  --app-surface: #ffffff;
+  --app-canvas: #f7f6f3;
+  --app-border: #e8e4dd;
+  --app-border-strong: #d8d2c8;
+  --app-ink: #1f1a13;
+  --app-ink-soft: #6b6459;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: var(--app-canvas);
+}
+
+/* --- Sidebar ------------------------------------------------------------ */
+.app-sidebar {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: var(--app-sidebar-width);
+  background: var(--solar-night);
+  color: rgba(247, 243, 236, 0.86);
+  display: flex;
+  flex-direction: column;
+  z-index: 1040;
+  transition: transform 0.2s ease;
+}
+
+.app-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.15rem 1.15rem;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(247, 243, 236, 0.1);
+}
+
+.app-sidebar-brand:hover {
+  color: #fff;
+}
+
+.app-nav {
+  padding: 0.75rem 0.6rem;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.app-nav-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.4);
+  padding: 0.75rem 0.65rem 0.4rem;
+}
+
+.app-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.5rem;
+  color: rgba(247, 243, 236, 0.76);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  margin-bottom: 0.15rem;
+}
+
+.app-nav-link:hover {
+  background: rgba(247, 243, 236, 0.07);
+  color: #fff;
+}
+
+/* The active section is marked by background AND weight, not colour alone, so
+   it stays obvious to a colourblind user and in a greyscale printout. */
+.app-nav-link.active {
+  background: rgba(240, 168, 48, 0.16);
+  color: var(--solar-amber-bright);
+  font-weight: 600;
+}
+
+.app-nav-link svg {
+  flex: none;
+  opacity: 0.85;
+}
+
+/* --- Signed in user, pinned to the bottom ------------------------------- */
+.app-sidebar-user {
+  border-top: 1px solid rgba(247, 243, 236, 0.1);
+  padding: 0.85rem 1rem;
+}
+
+.app-avatar {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--solar-amber);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex: none;
+}
+
+.app-avatar-sm {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.7rem;
+  background: var(--solar-amber-soft);
+  color: var(--solar-amber);
+}
+
+/* --- Main column --------------------------------------------------------- */
+.app-main {
+  margin-inline-start: var(--app-sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-topbar {
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.app-content {
+  padding: 1.75rem 1.5rem 3rem;
+  flex-grow: 1;
+}
+
+/* Below large screens the sidebar slides away and is opened by the menu
+   button, so the interface still works on a tablet or a phone. */
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    transform: translateX(-100%);
+  }
+  .app-sidebar.is-open {
+    transform: translateX(0);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.35);
+  }
+  .app-main {
+    margin-inline-start: 0;
+  }
+  .app-content {
+    padding: 1.25rem 1rem 2.5rem;
+  }
+}
+
+.app-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 19, 13, 0.45);
+  z-index: 1035;
+}
+
+/* --- Page header --------------------------------------------------------- */
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.page-subtitle {
+  color: var(--app-ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  max-width: 60ch;
+}
+
+/* --- Cards and tables ---------------------------------------------------- */
+.app-card {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 0.65rem;
+}
+
+.app-card-header {
+  padding: 0.9rem 1.15rem;
+  border-bottom: 1px solid var(--app-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.app-card-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--app-ink-soft);
+  margin: 0;
+}
+
+/* Denser, quieter tables: the data is the point, so the chrome recedes. */
+.app-table {
+  margin-bottom: 0;
+}
+
+.app-table > thead > tr > th {
+  background: #fbfaf8;
+  border-bottom: 1px solid var(--app-border-strong);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--app-ink-soft);
+  padding: 0.7rem 1.15rem;
+  white-space: nowrap;
+}
+
+.app-table > tbody > tr > td {
+  padding: 0.8rem 1.15rem;
+  border-bottom: 1px solid var(--app-border);
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.app-table > tbody > tr:last-child > td {
+  border-bottom: 0;
+}
+
+.app-table > tbody > tr:hover {
+  background: #fdfcfa;
+}
+
+/* Figures line up when they share a column. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Empty and loading states -------------------------------------------- */
+.app-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--app-ink-soft);
+}
+
+.app-empty-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 0.85rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--solar-amber-soft);
+  color: var(--solar-amber);
+}
+
+/* A skeleton row conveys "a table is loading here" far better than a spinner,
+   because it keeps the shape of what is about to appear. */
+.skeleton {
+  background: linear-gradient(90deg, #efece7 25%, #f7f5f2 37%, #efece7 63%);
+  background-size: 400% 100%;
+  animation: skeleton-sweep 1.2s ease-in-out infinite;
+  border-radius: 0.3rem;
+  height: 0.8rem;
+}
+
+@keyframes skeleton-sweep {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* --- Toasts -------------------------------------------------------------- */
+.app-toasts {
+  position: fixed;
+  bottom: 1.25rem;
+  inset-inline-end: 1.25rem;
+  z-index: 1080;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(22rem, calc(100vw - 2.5rem));
+}
+
+.app-toast {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border-strong);
+  border-inline-start: 3px solid var(--solar-amber);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.6rem 1.4rem rgba(23, 19, 13, 0.14);
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  font-size: 0.875rem;
+}
+
+.app-toast.is-success { border-inline-start-color: #1a7f4b; }
+.app-toast.is-danger  { border-inline-start-color: #b42318; }
+
+/* ===========================================================================
+   Sign in and registration
+   ===========================================================================
+   Both pages share one layout: a dark panel carrying the brand and a short
+   reminder of what the system does, beside a light panel holding the form.
+   The dark panel is hidden on small screens, where it would push the form
+   below the fold and make a phone user scroll before they can type.
+   =========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 992px) {
+  .auth-page {
+    grid-template-columns: 45% 55%;
+  }
+}
+
+/* --- Left: the brand panel ---------------------------------------------- */
+.auth-aside {
+  position: relative;
+  overflow: hidden;
+  background: var(--solar-night);
+  color: #f7f3ec;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem;
+}
+
+@media (min-width: 992px) {
+  .auth-aside {
+    display: flex;
+  }
+}
+
+.auth-aside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(38rem 24rem at 85% 8%, rgba(240, 168, 48, 0.26), transparent 62%),
+    radial-gradient(30rem 20rem at 5% 100%, rgba(180, 105, 14, 0.2), transparent 65%);
+  pointer-events: none;
+}
+
+.auth-aside > * {
+  position: relative;
+}
+
+.auth-aside-point {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 1.1rem;
+}
+
+.auth-aside-point-icon {
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: rgba(240, 168, 48, 0.14);
+  color: var(--solar-amber-bright);
+}
+
+/* --- Right: the form panel ----------------------------------------------- */
+.auth-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  background: var(--app-canvas);
+}
+
+.auth-form-wrap {
+  width: 100%;
+  max-width: 27rem;
+}
+
+/* Shown only on small screens, where the dark panel is hidden. */
+.auth-mobile-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--solar-amber);
+}
+
+@media (min-width: 992px) {
+  .auth-mobile-brand {
+    display: none;
+  }
+}
+
+/* --- The password reveal button ------------------------------------------ */
+.auth-password-wrap {
+  position: relative;
+}
+
+.auth-password-toggle {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: var(--app-ink-soft);
+  border-radius: 0 0.375rem 0.375rem 0;
+}
+
+.auth-password-toggle:hover {
+  color: var(--solar-amber);
+}
+
+/* Room for the button so the eye icon never sits on top of the text. */
+.auth-password-wrap .form-control {
+  padding-inline-end: 2.75rem;
+}
+
+/* --- Field-level validation ---------------------------------------------- */
+.auth-field-error {
+  font-size: 0.78rem;
+  color: #b42318;
+  margin-top: 0.25rem;
+}
+
+/* --- The "check your details" success panel ------------------------------ */
+.auth-success-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #dcf3e6;
+  color: #1a7f4b;
+}
