@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : network_security_config.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : The list of servers this app may talk to over plain HTTP.
+
+  Why this file is needed
+                Since Android 9 plain HTTP is blocked by default. Without
+                this file every call to the Web API fails with the error:
+                CLEARTEXT communication not permitted
+
+                The demo server is IIS on a laptop on the local network.
+                It has no trusted certificate, so HTTP is the only option.
+
+  Why named hosts, not one switch
+                android:usesCleartextTraffic="true" in the manifest would
+                allow plain HTTP to ANY server on the internet.
+                Naming the hosts keeps the hole as small as possible.
+                Only the lab machines. Everything else still needs HTTPS.
+                This is least privilege, applied to network access.
+
+  IMPORTANT     If the laptop IP changes, change it in TWO places.
+                Here, and BASE_URL in ApiConfig.java.
+  =========================================================================
+-->
+<network-security-config>
+
+    <!-- Everything not named below keeps the secure default. -->
+    <base-config cleartextTrafficPermitted="false" />
+
+    <domain-config cleartextTrafficPermitted="true">
+
+        <!-- Laptop's address when the phone's mobile hotspot is shared to it. -->
+        <domain includeSubdomains="false">10.214.53.228</domain>
+
+        <!-- Laptop's address on the USB dongle network. -->
+        <domain includeSubdomains="false">192.168.0.2</domain>
+
+        <!-- The host machine as seen from the Android emulator. -->
+        <domain includeSubdomains="false">10.0.2.2</domain>
+
+        <!-- The device itself; useful only for local testing tools. -->
+        <domain includeSubdomains="false">localhost</domain>
+        <domain includeSubdomains="false">127.0.0.1</domain>
+
+    </domain-config>
+
+</network-security-config>

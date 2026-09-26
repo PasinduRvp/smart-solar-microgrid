@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : values-night/themes.xml  (dark)
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : The dark theme.
+
+  Android picks this file by itself when the phone is set to dark mode.
+
+  The brand amber is made lighter here. The full strength shade is too dim
+  to read on a dark background. So dark mode is a chosen set of colours.
+  It is not the light theme turned upside down.
+  =========================================================================
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.SolarMicrogrid" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">#FBBF24</item>
+        <item name="colorOnPrimary">#3F2900</item>
+        <item name="colorPrimaryContainer">#7C4A02</item>
+        <item name="colorOnPrimaryContainer">@color/solar_amber_light</item>
+
+        <item name="colorSecondary">#5EEAD4</item>
+        <item name="colorOnSecondary">#00332E</item>
+        <item name="colorSecondaryContainer">#115E59</item>
+        <item name="colorOnSecondaryContainer">@color/grid_teal_light</item>
+
+        <item name="colorError">#F87171</item>
+
+        <item name="android:colorBackground">@color/surface_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorSurfaceContainer">@color/surface_container_dark</item>
+        <item name="colorOnSurface">@color/ink_dark</item>
+        <item name="colorOnSurfaceVariant">@color/ink_muted_dark</item>
+        <item name="colorOutline">#374151</item>
+
+        <item name="android:statusBarColor">@color/surface_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="materialCardViewStyle">@style/Widget.Solar.Card</item>
+    </style>
+
+</resources>
