@@ -1,0 +1,137 @@
+/*
+ * ---------------------------------------------------------------------------
+ * File        : app/build.gradle
+ * Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+ * Author      : NIMSARA R V P P (IT 23215306)
+ * Description : Build configuration for the Android client.
+ *
+ * Version numbers are not written here - they live in
+ * gradle/libs.versions.toml so that there is exactly one place to change them.
+ * ---------------------------------------------------------------------------
+ */
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+/*
+ * The Google Maps key is read from local.properties, which is NOT in source
+ * control.
+ *
+ * Why not put it straight in AndroidManifest.xml
+ *      The manifest is committed. A key pushed to a public repository gets
+ *      found by scanners within minutes and used against the owner's billing
+ *      account. Keeping it in local.properties means each member holds their
+ *      own copy and none of them is ever committed - the same reasoning as
+ *      appsettings.Development.json on the Web API side.
+ *
+ * getProperty's second argument is the default, so a member who has not added
+ * a key yet still gets a building project. The map draws an empty grid rather
+ * than crashing, which makes the cause obvious.
+ */
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream { localProperties.load(it) }
+}
+def mapsApiKey = localProperties.getProperty("MAPS_API_KEY", "")
+
+android {
+    namespace 'lk.sliit.solarmicrogrid'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "lk.sliit.solarmicrogrid"
+
+        // API 24 (Android 7.0) covers virtually every device still in use
+        // while still allowing modern AndroidX libraries.
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Substituted into the ${MAPS_API_KEY} placeholder in the manifest.
+        manifestPlaceholders = [MAPS_API_KEY: mapsApiKey]
+
+        // Lets the app choose its map at run time.
+        // No key means the OpenStreetMap screen is used instead. That one
+        // needs no key and no billing account.
+        buildConfigField "boolean", "HAS_MAPS_KEY", (!mapsApiKey.trim().isEmpty()).toString()
+    }
+
+    buildFeatures {
+        // viewBinding replaces findViewById with generated, type safe fields.
+        // It removes a whole class of crash: a typo in an id is then a compile
+        // error instead of a NullPointerException at runtime.
+        viewBinding true
+
+        // BuildConfig.DEBUG is used to keep HTTP logging out of release builds.
+        // AGP 8 no longer generates BuildConfig unless it is asked to.
+        buildConfig true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    lint {
+        // Lint must fail the build on a real error, such as calling a
+        // permission protected API without checking the permission first.
+        abortOnError true
+
+        /*
+         * These three only say that newer versions exist. They are switched
+         * off on purpose.
+         *
+         * The library versions here are pinned to the ones Android Gradle
+         * plugin 8.8.0 accepts. The wizard originally generated newer ones,
+         * the project would not build, and pinning them is what fixed it.
+         * Taking lint's advice here would break the build again.
+         *
+         * Raise them only together with the plugin version, and only after
+         * a clean build on every member's machine.
+         */
+        disable 'GradleDependency'
+        disable 'AndroidGradlePluginVersion'
+        disable 'OldTargetApi'
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    implementation libs.recyclerview
+    implementation libs.swiperefresh
+
+    // --- Talking to the C# Web API ---
+    implementation libs.retrofit
+    implementation libs.retrofit.gson
+    implementation libs.okhttp.logging
+
+    // --- Maps and the device's location ---
+    implementation libs.play.services.maps
+    implementation libs.play.services.location
+
+    // --- Map with no API key needed ---
+    implementation libs.osmdroid
+
+    // --- QR codes: draw one, and scan one ---
+    implementation libs.zxing.core
+    implementation libs.zxing.embedded
+
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
