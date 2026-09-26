@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : strings.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : Every piece of text the user reads.
+
+  Why text is never written in a layout
+                Android warns about text inside layouts for a reason.
+                Text in one place can be fixed once. It can be checked for
+                the same wording everywhere. It can be translated later
+                without opening any screen.
+
+                It also keeps the wording of business rules the same on
+                every screen. That matters when the rule is the thing
+                being explained.
+  =========================================================================
+-->
+<resources>
+
+    <string name="app_name">Solar Microgrid</string>
+
+    <!-- ===== Shared ==================================================== -->
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_register">Create account</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_sign_out">Sign out</string>
+    <string name="label_loading">Please wait\u2026</string>
+
+    <!-- ===== Login ===================================================== -->
+    <string name="login_title">Welcome back</string>
+    <string name="login_subtitle">Sign in to manage your energy trading</string>
+    <string name="login_identifier_hint">Email or NIC</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_no_account">New here? Create an account</string>
+    <string name="login_error_identifier">Enter your email address or NIC.</string>
+    <string name="login_error_password">Enter your password.</string>
+
+    <!-- ===== Register ================================================== -->
+    <string name="register_title">Create your account</string>
+    <string name="register_subtitle">Register as a Solar Prosumer</string>
+    <string name="register_nic_hint">NIC number</string>
+    <string name="register_nic_helper">9 digits then V, or 12 digits</string>
+    <string name="register_full_name_hint">Full name</string>
+    <string name="register_email_hint">Email address</string>
+    <string name="register_phone_hint">Phone number</string>
+    <string name="register_phone_helper">10 digits starting with 0</string>
+    <string name="register_address_hint">Address</string>
+    <string name="register_capacity_hint">Solar capacity (kW)</string>
+    <string name="register_password_hint">Password</string>
+    <string name="register_password_helper">At least 8 characters</string>
+    <string name="register_have_account">Already registered? Sign in</string>
+
+    <!-- The pending state is business rule BR-6 and is worth spelling out,
+         because a new prosumer who is not told this will assume it failed. -->
+    <string name="register_success_title">Account created</string>
+    <string name="register_success_message">A Backoffice officer must activate your account before you can sign in. You will be able to sign in once that is done.</string>
+
+    <string name="register_error_nic">Enter a valid NIC: 9 digits followed by V or X, or 12 digits.</string>
+    <string name="register_error_full_name">Enter your full name.</string>
+    <string name="register_error_email">Enter a valid email address.</string>
+    <string name="register_error_phone">Enter a valid 10 digit phone number, for example 0771234567.</string>
+    <string name="register_error_address">Enter your address.</string>
+    <string name="register_error_capacity">Enter your solar capacity, between 0.1 and 1000 kW.</string>
+    <string name="register_error_password">Password must be at least 8 characters.</string>
+
+    <!-- ===== Home screens ============================================== -->
+    <string name="home_prosumer_title">Prosumer dashboard</string>
+    <string name="home_quick_actions">Quick actions</string>
+    <string name="home_operator_title">Grid Operator</string>
+    <string name="home_role_label">Role: %1$s</string>
+    <string name="home_nic_label">NIC: %1$s</string>
+
+    <!-- Backoffice officers administer the system from the web application,
+         so the mobile app tells them rather than showing an empty screen. -->
+    <string name="home_backoffice_web_only">Backoffice officers manage the system from the web application. Please sign in there instead.</string>
+
+    <!-- ===== Errors ==================================================== -->
+    <string name="session_expired">Your sign in has expired. Please sign in again.</string>
+    <string name="error_no_connection">Cannot reach the server. Check that you are on the same network and try again.</string>
+
+    <!-- ===== Profile (B4) ============================================== -->
+    <string name="action_my_profile">My profile</string>
+    <string name="profile_title">My profile</string>
+
+    <string name="profile_section_fixed">Account identity</string>
+    <string name="profile_section_fixed_note">These are set by the system and cannot be changed here.</string>
+    <string name="profile_label_nic">NIC</string>
+    <string name="profile_label_role">Role</string>
+    <string name="profile_label_status">Status</string>
+
+    <string name="profile_section_details">Your details</string>
+    <string name="action_save_changes">Save changes</string>
+    <string name="profile_saved">Your details have been saved.</string>
+
+    <string name="profile_section_password">Change password</string>
+    <string name="profile_current_password_hint">Current password</string>
+    <string name="profile_new_password_hint">New password</string>
+    <string name="action_change_password">Change password</string>
+    <string name="profile_password_changed">Your password has been changed.</string>
+    <string name="profile_error_current_password">Enter your current password.</string>
+    <string name="profile_error_new_password">The new password must be at least 8 characters.</string>
+
+    <!-- ===== Account deactivation (B5, business rule BR-6) ============= -->
+    <string name="profile_section_account">Account</string>
+    <string name="action_request_deactivation">Request account deactivation</string>
+    <string name="profile_deactivation_explain">Asking for deactivation does not close your account straight away. A Backoffice officer reviews the request, and only they can reactivate the account afterwards.</string>
+    <string name="profile_deactivation_confirm_title">Request deactivation?</string>
+    <string name="profile_deactivation_confirm_message">Your request will be sent to a Backoffice officer. You will not be able to reactivate the account yourself.</string>
+    <string name="profile_deactivation_confirm_action">Send request</string>
+    <string name="profile_deactivation_sent">Your request has been sent to a Backoffice officer.</string>
+    <string name="profile_deactivation_already">Deactivation already requested. A Backoffice officer is reviewing it.</string>
+
+    <!-- ===== Profile view / edit mode ================================== -->
+    <string name="action_edit">Edit</string>
+    <string name="profile_label_full_name">Full name</string>
+    <string name="profile_label_email">Email address</string>
+    <string name="profile_label_phone">Phone number</string>
+    <string name="profile_label_address">Address</string>
+    <string name="profile_label_capacity">Solar capacity</string>
+    <string name="profile_capacity_value">%1$s kW</string>
+    <string name="profile_value_not_set">Not set</string>
+
+    <!-- ===== Map and nodes (C1 to C4) ================================== -->
+    <string name="action_nearby_nodes">Nearby grid nodes</string>
+    <string name="map_title">Grid nodes</string>
+    <string name="map_nearest_label">Nearest node</string>
+    <string name="map_no_nodes">No grid nodes to show yet.</string>
+    <string name="map_no_nodes_nearby">No grid nodes within %1$s km of you.</string>
+    <string name="map_permission_title">Location permission</string>
+    <string name="map_permission_message">The map uses your location to show which grid nodes are closest to you. You can still see every node without it.</string>
+    <string name="map_permission_denied">Location is off. The map shows all nodes instead of the closest ones.</string>
+    <string name="action_allow">Allow</string>
+    <string name="action_not_now">Not now</string>
+    <string name="action_view_details">View details</string>
+
+    <string name="node_detail_title">Node details</string>
+    <string name="node_label_code">Node code</string>
+    <string name="node_label_address">Address</string>
+    <string name="node_label_capacity">Capacity</string>
+    <string name="node_label_bays">Battery bays free</string>
+    <string name="node_label_schedule">Opening hours</string>
+    <string name="node_capacity_value">%1$s kWh</string>
+    <string name="node_bays_value">%1$d of %2$d</string>
+    <string name="node_no_schedule">No opening hours have been set for this node.</string>
+    <string name="node_status_active">Open for bookings</string>
+    <string name="node_status_inactive">Closed. This node is not taking bookings.</string>
+    <string name="node_schedule_row">%1$s   %2$s to %3$s</string>
+
+    <!-- ===== Nearby nodes list ========================================= -->
+    <string name="nearby_title">Nearby grid nodes</string>
+    <string name="action_open_map">Map</string>
+    <string name="nearby_sorted_by_distance">Sorted by distance from you.</string>
+    <string name="nearby_all_nodes">All grid nodes. Turn on location to sort them by distance.</string>
+    <string name="nearby_empty">No grid nodes were found.</string>
+    <plurals name="nearby_bays">
+        <item quantity="one">%1$d of %2$d bay free</item>
+        <item quantity="other">%1$d of %2$d bays free</item>
+    </plurals>
+    <string name="nearby_closed">Closed</string>
+
+    <!-- ===== OpenStreetMap ============================================= -->
+    <string name="map_attribution">Map data from OpenStreetMap contributors</string>
+
+    <string name="map_location_off">Location is switched off on this phone. Turn it on in Settings to see which node is closest.</string>
+
+    <!-- ===== Booking flow (D1 to D5) =================================== -->
+    <string name="action_my_bookings">My bookings</string>
+    <string name="action_book_window">Book a window</string>
+
+    <string name="booking_new_title">Book a window</string>
+    <string name="booking_edit_title">Change booking</string>
+    <string name="booking_pick_day">Pick a day</string>
+    <string name="booking_pick_day_help">Bookings must be within the next 7 days.</string>
+    <string name="booking_pick_window">Pick a window</string>
+    <string name="booking_no_windows">No windows are open at this node on that day.</string>
+    <string name="booking_window_row">%1$s to %2$s</string>
+    <!-- Day name on the first line, date on the second. -->
+    <string name="booking_day_chip">%1$s\n%2$s</string>
+    <plurals name="booking_window_free">
+        <item quantity="one">%1$d of %2$d place free</item>
+        <item quantity="other">%1$d of %2$d places free</item>
+    </plurals>
+    <string name="booking_window_full">Full</string>
+    <string name="booking_energy_hint">Energy</string>
+    <string name="booking_energy_helper">Between 0.1 and 1000 kWh</string>
+    <string name="booking_direction">Direction</string>
+    <string name="booking_deliver">Deliver to grid</string>
+    <string name="booking_draw">Draw from grid</string>
+    <string name="action_confirm_booking">Confirm booking</string>
+    <string name="action_save_booking">Save changes</string>
+    <string name="booking_error_pick_window">Pick a window first.</string>
+    <string name="booking_error_energy">Enter the energy, between 0.1 and 1000 kWh.</string>
+
+    <!-- Summary screen, shown after every action. Task D5. -->
+    <string name="summary_title">Booking summary</string>
+    <string name="summary_created">Booking confirmed</string>
+    <string name="summary_updated">Booking changed</string>
+    <string name="summary_cancelled">Booking cancelled</string>
+    <string name="summary_created_note">Your booking is waiting for a Grid Operator to approve it. You can see it under My bookings.</string>
+    <string name="summary_updated_note">Your booking has been changed. The details below are what is saved now.</string>
+    <string name="summary_cancelled_note">This window has been given back. You can book another one at any time.</string>
+    <string name="summary_label_number">Booking number</string>
+    <string name="summary_label_node">Grid node</string>
+    <string name="summary_label_when">Date and time</string>
+    <string name="summary_label_energy">Energy</string>
+    <string name="summary_label_direction">Direction</string>
+    <string name="summary_label_status">Status</string>
+    <string name="summary_label_reason">Reason</string>
+    <string name="action_done">Done</string>
+
+    <!-- My bookings list -->
+    <string name="bookings_title">My bookings</string>
+    <string name="bookings_empty">You have no bookings yet. Open a grid node to book a window.</string>
+    <string name="bookings_energy_value">%1$s kWh</string>
+    <!-- Energy, then direction. Joined here, not in Java. -->
+    <string name="bookings_energy_line">%1$s, %2$s</string>
+    <string name="bookings_locked">Less than 12 hours away. It can no longer be changed or cancelled.</string>
+    <string name="action_change">Change</string>
+    <string name="action_cancel_booking">Cancel booking</string>
+
+    <!-- Cancel dialog. Task D4. -->
+    <string name="cancel_title">Cancel this booking?</string>
+    <string name="cancel_message">The window is given back to the grid. Tell us why, so the operator knows.</string>
+    <string name="cancel_reason_hint">Reason</string>
+    <string name="cancel_error_reason">Enter a reason.</string>
+    <string name="cancel_confirm">Yes, cancel it</string>
+    <string name="cancel_keep">Keep booking</string>
+
+    <!-- ===== Dashboard counts (E1) ===================================== -->
+    <string name="dash_pending">Pending</string>
+    <string name="dash_approved">Approved</string>
+    <string name="dash_completed">Completed</string>
+    <string name="dash_next_booking">Next booking</string>
+    <!-- Node name, then when it is. Joined here so a translator can move the comma. -->
+    <string name="dash_next_booking_value">%1$s, %2$s</string>
+    <string name="dash_no_next_booking">You have no bookings coming up.</string>
+    <string name="dash_energy_summary">Delivered %1$s kWh, drawn %2$s kWh</string>
+
+    <!-- ===== Booking history search (E2) =============================== -->
+    <string name="bookings_search_hint">Search by node or booking number</string>
+    <string name="bookings_filter_all">All</string>
+    <string name="bookings_none_match">No bookings match your search.</string>
+
+    <!-- ===== QR code (E3) ============================================== -->
+    <string name="action_show_qr">Show QR code</string>
+    <string name="qr_title">Transaction QR code</string>
+    <string name="qr_help">Show this to the Grid Operator at the node. They scan it to start the energy transfer.</string>
+    <string name="qr_failed">The QR code could not be drawn.</string>
+
+    <!-- ===== Operator scanner (E4, E5) ================================= -->
+    <string name="action_scan_qr">Scan QR code</string>
+    <string name="scan_prompt">Point the camera at the prosumer QR code</string>
+    <string name="scan_cancelled">Scan cancelled.</string>
+    <string name="scan_result_title">Scanned booking</string>
+    <string name="scan_verified">Code verified</string>
+    <string name="scan_prosumer">Prosumer</string>
+    <string name="action_complete_transfer">Mark transfer complete</string>
+    <string name="scan_already_completed">This booking is already finished.</string>
+    <string name="action_scan_another">Scan another</string>
+
+    <!-- ===== Transfer complete summary (E5) ============================ -->
+    <string name="transfer_title">Transfer complete</string>
+    <string name="transfer_headline">Energy transfer complete</string>
+    <string name="transfer_note">The booking is now finished. The prosumer can see it as Completed, and the window is closed.</string>
+    <string name="action_back_to_home">Done</string>
+
+</resources>
