@@ -1,0 +1,13 @@
+*.iml
+.gradle
+/local.properties
+# The whole IDE folder, not only parts of it. These files hold each
+# member's own window layout, SDK path and run configuration. Committed,
+# they cause a conflict every time two people open the project.
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
