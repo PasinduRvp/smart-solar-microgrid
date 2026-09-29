@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : GenerateSlotsRequestDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : Instructions for generating bookable windows at a node. The
  *               generator reads the node's weekly schedule and divides each

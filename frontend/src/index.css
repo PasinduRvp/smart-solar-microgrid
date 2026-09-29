@@ -22,18 +22,40 @@
      Amber rather than Bootstrap's default blue, because the subject is solar
      energy. The dark tone is a warm near-black rather than a cold grey, so it
      sits beside the amber without the two looking like different schemes. */
-  --solar-amber: #b4690e;
-  --solar-amber-bright: #f0a830;
-  --solar-amber-soft: #fdf3e3;
-  --solar-night: #17130d;
-  --solar-night-soft: #241d14;
+  /* Brand palette.
 
-  --bs-primary: var(--solar-amber);
-  --bs-primary-rgb: 180, 105, 14;
+     ON CONTRAST
+       The three brand greens were measured against white before use:
+         Eco Green    #3A9D3F  3.46 : 1
+         Light Green  #6DBE45  2.31 : 1
+         Energy Green #7BCB42  2.01 : 1
+       WCAG asks 4.5 : 1 for normal text, so none of them may carry white
+       button text or act as a link colour. They are fills and accents.
 
-  --bs-link-color: var(--solar-amber);
-  --bs-link-hover-color: #8a5008;
-  --bs-link-color-rgb: 180, 105, 14;
+       --brand-green-deep #2F7D33 was added for that work. Same hue,
+       5.12 : 1, so buttons and links pass.
+
+       On the navy hero the bright greens are excellent, which is why the
+       accents there use Energy Green at 7.30 : 1. */
+  /* Nudged from #2f7d33 so the brand green is one value on the web and in
+     the Android app. The app moved to a tinted page background, where the
+     old green measured 4.41 against normal text and just missed the 4.5
+     WCAG asks for. This reads 4.84 there, 5.61 on white, and 5.61 for
+     white text on it as a button fill. */
+  --brand-green-deep: #2c7630;
+  --brand-green: #3a9d3f;
+  --brand-green-light: #6dbe45;
+  --brand-green-energy: #7bcb42;
+  --brand-green-soft: #eaf5e9;
+  --brand-navy: #102a43;
+  --brand-navy-soft: #1b3a57;
+
+  --bs-primary: var(--brand-green-deep);
+  --bs-primary-rgb: 47, 125, 51;
+
+  --bs-link-color: var(--brand-green-deep);
+  --bs-link-hover-color: #246a28;
+  --bs-link-color-rgb: 47, 125, 51;
 }
 
 body {
@@ -53,45 +75,45 @@ h1, h2, h3, h4, h5, h6,
 /* Bootstrap reads these variables for every button state, so the accent applies
    without any component rule being overridden. */
 .btn-primary {
-  --bs-btn-bg: var(--solar-amber);
-  --bs-btn-border-color: var(--solar-amber);
-  --bs-btn-hover-bg: #9a5a0c;
-  --bs-btn-hover-border-color: #9a5a0c;
-  --bs-btn-active-bg: #7d4906;
-  --bs-btn-active-border-color: #7d4906;
-  --bs-btn-disabled-bg: var(--solar-amber);
-  --bs-btn-disabled-border-color: var(--solar-amber);
+  --bs-btn-bg: var(--brand-green-deep);
+  --bs-btn-border-color: var(--brand-green-deep);
+  --bs-btn-hover-bg: #276b2a;
+  --bs-btn-hover-border-color: #276b2a;
+  --bs-btn-active-bg: #1f5e22;
+  --bs-btn-active-border-color: #1f5e22;
+  --bs-btn-disabled-bg: var(--brand-green-deep);
+  --bs-btn-disabled-border-color: var(--brand-green-deep);
 }
 
 .btn-outline-primary {
-  --bs-btn-color: var(--solar-amber);
-  --bs-btn-border-color: var(--solar-amber);
-  --bs-btn-hover-bg: var(--solar-amber);
-  --bs-btn-hover-border-color: var(--solar-amber);
-  --bs-btn-active-bg: #7d4906;
-  --bs-btn-active-border-color: #7d4906;
+  --bs-btn-color: var(--brand-green-deep);
+  --bs-btn-border-color: var(--brand-green-deep);
+  --bs-btn-hover-bg: var(--brand-green-deep);
+  --bs-btn-hover-border-color: var(--brand-green-deep);
+  --bs-btn-active-bg: #1f5e22;
+  --bs-btn-active-border-color: #1f5e22;
 }
 
 .nav-pills {
-  --bs-nav-pills-link-active-bg: var(--solar-amber);
+  --bs-nav-pills-link-active-bg: var(--brand-green-deep);
 }
 
 .form-control:focus,
 .form-select:focus,
 .form-check-input:focus {
-  border-color: var(--solar-amber-bright);
-  box-shadow: 0 0 0 0.2rem rgba(180, 105, 14, 0.18);
+  border-color: var(--brand-green-energy);
+  box-shadow: 0 0 0 0.2rem rgba(47, 125, 51, 0.18);
 }
 
 .form-check-input:checked {
-  background-color: var(--solar-amber);
-  border-color: var(--solar-amber);
+  background-color: var(--brand-green-deep);
+  border-color: var(--brand-green-deep);
 }
 
 /* Keeps the active navigation item legible against the dark bar. */
 .navbar-dark .nav-link.active,
 .navbar .nav-link.active {
-  color: var(--solar-amber-bright) !important;
+  color: var(--brand-green-energy) !important;
 }
 
 /* ===========================================================================
@@ -105,8 +127,8 @@ h1, h2, h3, h4, h5, h6,
 .landing-hero {
   position: relative;
   overflow: hidden;
-  background: var(--solar-night);
-  color: #f7f3ec;
+  background: var(--brand-navy);
+  color: #f2f7f2;
 }
 
 /* A soft sunrise behind the headline. Two radial gradients rather than an
@@ -117,7 +139,7 @@ h1, h2, h3, h4, h5, h6,
   inset: 0;
   background:
     radial-gradient(60rem 30rem at 78% -10%, rgba(240, 168, 48, 0.28), transparent 60%),
-    radial-gradient(40rem 24rem at 10% 110%, rgba(180, 105, 14, 0.22), transparent 62%);
+    radial-gradient(40rem 24rem at 10% 110%, rgba(47, 125, 51, 0.22), transparent 62%);
   pointer-events: none;
 }
 
@@ -130,7 +152,7 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--solar-amber-bright);
+  color: var(--brand-green-energy);
 }
 
 .landing-hero-title {
@@ -151,7 +173,7 @@ h1, h2, h3, h4, h5, h6,
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 1;
-  color: var(--solar-amber-bright);
+  color: var(--brand-green-energy);
   font-variant-numeric: tabular-nums;
 }
 
@@ -163,7 +185,7 @@ h1, h2, h3, h4, h5, h6,
 /* Feature and role cards: a quiet lift on hover so they read as interactive
    without animating on their own. */
 .landing-card {
-  border: 1px solid #ece7df;
+  border: 1px solid #dde5dc;
   border-radius: 0.75rem;
   background: #fff;
   height: 100%;
@@ -181,8 +203,8 @@ h1, h2, h3, h4, h5, h6,
   display: grid;
   place-items: center;
   border-radius: 0.6rem;
-  background: var(--solar-amber-soft);
-  color: var(--solar-amber);
+  background: var(--brand-green-soft);
+  color: var(--brand-green-deep);
 }
 
 /* The numbered steps in "How it works". The number is part of the content
@@ -193,8 +215,8 @@ h1, h2, h3, h4, h5, h6,
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--solar-night);
-  color: var(--solar-amber-bright);
+  background: var(--brand-navy);
+  color: var(--brand-green-energy);
   font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
@@ -206,7 +228,7 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--solar-amber);
+  color: var(--brand-green-deep);
 }
 
 /* Respect a reduced-motion preference: the hover lift is a nicety, not
@@ -233,11 +255,11 @@ h1, h2, h3, h4, h5, h6,
 :root {
   --app-sidebar-width: 15rem;
   --app-surface: #ffffff;
-  --app-canvas: #f7f6f3;
-  --app-border: #e8e4dd;
-  --app-border-strong: #d8d2c8;
-  --app-ink: #1f1a13;
-  --app-ink-soft: #6b6459;
+  --app-canvas: #f5f8f5;
+  --app-border: #dde5dc;
+  --app-border-strong: #c3d2c2;
+  --app-ink: #102a43;
+  --app-ink-soft: #5a6b7c;
 }
 
 .app-shell {
@@ -251,7 +273,7 @@ h1, h2, h3, h4, h5, h6,
   inset-block: 0;
   inset-inline-start: 0;
   width: var(--app-sidebar-width);
-  background: var(--solar-night);
+  background: var(--brand-navy);
   color: rgba(247, 243, 236, 0.86);
   display: flex;
   flex-direction: column;
@@ -310,7 +332,7 @@ h1, h2, h3, h4, h5, h6,
    it stays obvious to a colourblind user and in a greyscale printout. */
 .app-nav-link.active {
   background: rgba(240, 168, 48, 0.16);
-  color: var(--solar-amber-bright);
+  color: var(--brand-green-energy);
   font-weight: 600;
 }
 
@@ -331,7 +353,7 @@ h1, h2, h3, h4, h5, h6,
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: var(--solar-amber);
+  background: var(--brand-green-deep);
   color: #fff;
   font-weight: 600;
   font-size: 0.8rem;
@@ -342,8 +364,8 @@ h1, h2, h3, h4, h5, h6,
   width: 1.75rem;
   height: 1.75rem;
   font-size: 0.7rem;
-  background: var(--solar-amber-soft);
-  color: var(--solar-amber);
+  background: var(--brand-green-soft);
+  color: var(--brand-green-deep);
 }
 
 /* --- Main column --------------------------------------------------------- */
@@ -450,7 +472,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .app-table > thead > tr > th {
-  background: #fbfaf8;
+  background: #fafcfa;
   border-bottom: 1px solid var(--app-border-strong);
   font-size: 0.7rem;
   font-weight: 600;
@@ -473,7 +495,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .app-table > tbody > tr:hover {
-  background: #fdfcfa;
+  background: #fbfdfb;
 }
 
 /* Figures line up when they share a column. */
@@ -495,14 +517,14 @@ h1, h2, h3, h4, h5, h6,
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--solar-amber-soft);
-  color: var(--solar-amber);
+  background: var(--brand-green-soft);
+  color: var(--brand-green-deep);
 }
 
 /* A skeleton row conveys "a table is loading here" far better than a spinner,
    because it keeps the shape of what is about to appear. */
 .skeleton {
-  background: linear-gradient(90deg, #efece7 25%, #f7f5f2 37%, #efece7 63%);
+  background: linear-gradient(90deg, #e9f0e8 25%, #f4f8f4 37%, #e9f0e8 63%);
   background-size: 400% 100%;
   animation: skeleton-sweep 1.2s ease-in-out infinite;
   border-radius: 0.3rem;
@@ -535,7 +557,7 @@ h1, h2, h3, h4, h5, h6,
 .app-toast {
   background: var(--app-surface);
   border: 1px solid var(--app-border-strong);
-  border-inline-start: 3px solid var(--solar-amber);
+  border-inline-start: 3px solid var(--brand-green-deep);
   border-radius: 0.5rem;
   box-shadow: 0 0.6rem 1.4rem rgba(23, 19, 13, 0.14);
   padding: 0.75rem 0.9rem;
@@ -545,8 +567,8 @@ h1, h2, h3, h4, h5, h6,
   font-size: 0.875rem;
 }
 
-.app-toast.is-success { border-inline-start-color: #1a7f4b; }
-.app-toast.is-danger  { border-inline-start-color: #b42318; }
+.app-toast.is-success { border-inline-start-color: #2f7d33; }
+.app-toast.is-danger  { border-inline-start-color: #c53030; }
 
 /* ===========================================================================
    Sign in and registration
@@ -573,8 +595,8 @@ h1, h2, h3, h4, h5, h6,
 .auth-aside {
   position: relative;
   overflow: hidden;
-  background: var(--solar-night);
-  color: #f7f3ec;
+  background: var(--brand-navy);
+  color: #f2f7f2;
   display: none;
   flex-direction: column;
   justify-content: space-between;
@@ -593,7 +615,7 @@ h1, h2, h3, h4, h5, h6,
   inset: 0;
   background:
     radial-gradient(38rem 24rem at 85% 8%, rgba(240, 168, 48, 0.26), transparent 62%),
-    radial-gradient(30rem 20rem at 5% 100%, rgba(180, 105, 14, 0.2), transparent 65%);
+    radial-gradient(30rem 20rem at 5% 100%, rgba(47, 125, 51, 0.2), transparent 65%);
   pointer-events: none;
 }
 
@@ -616,7 +638,7 @@ h1, h2, h3, h4, h5, h6,
   place-items: center;
   border-radius: 0.5rem;
   background: rgba(240, 168, 48, 0.14);
-  color: var(--solar-amber-bright);
+  color: var(--brand-green-energy);
 }
 
 /* --- Right: the form panel ----------------------------------------------- */
@@ -640,7 +662,7 @@ h1, h2, h3, h4, h5, h6,
   justify-content: center;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
-  color: var(--solar-amber);
+  color: var(--brand-green-deep);
 }
 
 @media (min-width: 992px) {
@@ -668,7 +690,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .auth-password-toggle:hover {
-  color: var(--solar-amber);
+  color: var(--brand-green-deep);
 }
 
 /* Room for the button so the eye icon never sits on top of the text. */
@@ -679,7 +701,7 @@ h1, h2, h3, h4, h5, h6,
 /* --- Field-level validation ---------------------------------------------- */
 .auth-field-error {
   font-size: 0.78rem;
-  color: #b42318;
+  color: #c53030;
   margin-top: 0.25rem;
 }
 
@@ -692,5 +714,350 @@ h1, h2, h3, h4, h5, h6,
   place-items: center;
   border-radius: 50%;
   background: #dcf3e6;
-  color: #1a7f4b;
+  color: #2f7d33;
+}
+
+/* =======================================================================
+   The animated solar scene on the landing hero.
+
+   Why CSS and not a 3D library
+       The scene is a tilted rectangle, a circle and a few moving dots.
+       three.js would add megabytes to the first load for that, and the
+       landing page is the first thing a visitor waits for.
+
+   Why transform and opacity only
+       These two are the properties a browser can animate on the GPU
+       without laying the page out again. Animating width, top or margin
+       would make the whole page reflow sixty times a second.
+   ======================================================================= */
+
+.solar-scene {
+  position: relative;
+  height: 420px;
+  perspective: 900px;
+  perspective-origin: 50% 40%;
+}
+
+/* ---- the sun -------------------------------------------------------- */
+.solar-sun {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  width: 96px;
+  height: 96px;
+  margin-left: -48px;
+}
+
+.solar-sun-core,
+.solar-sun-glow,
+.solar-sun-rays {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.solar-sun-core {
+  inset: 26px;
+  background: radial-gradient(circle at 35% 30%, #f4fbef, #7bcb42 55%, #2f7d33);
+  box-shadow: 0 0 26px rgba(123, 203, 66, 0.75);
+}
+
+.solar-sun-glow {
+  background: radial-gradient(circle, rgba(123, 203, 66, 0.45), transparent 68%);
+  animation: solar-breathe 4s ease-in-out infinite;
+}
+
+/* The rays are one repeating cone gradient, masked into a ring. Twelve
+   separate elements would be twelve more things for the browser to move. */
+.solar-sun-rays {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(123, 203, 66, 0.55) 0deg 4deg,
+    transparent 4deg 30deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 30px, #000 32px, #000 46px, transparent 48px);
+          mask: radial-gradient(circle, transparent 30px, #000 32px, #000 46px, transparent 48px);
+  animation: solar-turn 26s linear infinite;
+}
+
+/* ---- the panel ------------------------------------------------------ */
+.solar-stage {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+  transform-style: preserve-3d;
+  animation: solar-float 7s ease-in-out infinite;
+}
+
+.solar-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  padding: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1b3a57, #102a43);
+  border: 2px solid rgba(123, 203, 66, 0.55);
+  box-shadow: 0 26px 46px rgba(0, 0, 0, 0.45);
+
+  /* The tilt. rotateX lays it back, rotateZ turns it slightly to the
+     left, so it reads as a panel on a roof rather than a flat rectangle. */
+  transform: rotateX(56deg) rotateZ(-10deg);
+}
+
+.solar-cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 2px;
+  background: linear-gradient(150deg, #2f7d33, #1b3a57);
+  animation: solar-charge 3.4s ease-in-out infinite;
+}
+
+/* A band of light sweeping across the panel, as the sun catches it. */
+.solar-sheen {
+  position: absolute;
+  top: -60%;
+  left: -40%;
+  width: 40%;
+  height: 220%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.42),
+    transparent
+  );
+  transform: rotate(18deg);
+  animation: solar-sweep 5.5s ease-in-out infinite;
+}
+
+.solar-mast {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 8px;
+  height: 58px;
+  margin-left: -4px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(123, 203, 66, 0.5), rgba(148, 163, 184, 0.25));
+}
+
+/* ---- energy flowing to the node ------------------------------------- */
+.solar-flow {
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  width: 2px;
+  height: 120px;
+  margin-left: -1px;
+  background: linear-gradient(180deg, rgba(123, 203, 66, 0.35), rgba(123, 203, 66, 0.05));
+}
+
+.solar-spark {
+  position: absolute;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #7bcb42;
+  box-shadow: 0 0 12px rgba(123, 203, 66, 0.95);
+  animation: solar-travel 2.4s linear infinite;
+}
+
+.solar-spark:nth-child(2) { animation-delay: 0.8s; }
+.solar-spark:nth-child(3) { animation-delay: 1.6s; }
+
+/* ---- the grid node -------------------------------------------------- */
+.solar-node {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.solar-node-pulse {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: #3a9d3f;
+  box-shadow: 0 0 0 0 rgba(58, 157, 63, 0.6);
+  animation: solar-ping 2.4s ease-out infinite;
+}
+
+/* ---- the movement --------------------------------------------------- */
+@keyframes solar-turn {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes solar-breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.85; }
+  50%      { transform: scale(1.18); opacity: 1; }
+}
+
+@keyframes solar-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes solar-charge {
+  0%, 100% { background: linear-gradient(150deg, #2f7d33, #1b3a57); }
+  50%      { background: linear-gradient(150deg, #6dbe45, #2f7d33); }
+}
+
+@keyframes solar-sweep {
+  0%       { transform: translateX(0) rotate(18deg); }
+  60%, 100% { transform: translateX(820%) rotate(18deg); }
+}
+
+@keyframes solar-travel {
+  0%   { top: 0;    opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes solar-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(58, 157, 63, 0.6); }
+  70%  { box-shadow: 0 0 0 18px rgba(58, 157, 63, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(58, 157, 63, 0); }
+}
+
+/* Shorter on a phone, so the scene does not push the buttons off screen. */
+@media (max-width: 991.98px) {
+  .solar-scene { height: 330px; margin-top: 2rem; }
+  .solar-stage { width: 240px; margin-left: -120px; }
+}
+
+/*
+  Some people get motion sickness from movement on a page, and set
+  "reduce motion" in their system. The scene still draws, it simply
+  stops moving. Honouring this is part of WCAG 2.1.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .solar-sun-rays,
+  .solar-sun-glow,
+  .solar-stage,
+  .solar-cell,
+  .solar-sheen,
+  .solar-spark,
+  .solar-node-pulse {
+    animation: none;
+  }
+  .solar-sheen { opacity: 0; }
+  .solar-spark { top: 40%; }
+}
+
+/* The logo is drawn in navy and green, so on the navy navbar it needs a
+   light plate behind it or the navy strokes disappear. */
+.brand-logo {
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 3px;
+  object-fit: contain;
+}
+
+/* Weekly opening hours, in the node registration form.
+
+   Four fixed tracks: the day, the opening box, the word "to", the
+   closing box. Every row is laid out on the same tracks, so the boxes
+   sit on the same vertical lines all the way down the list.
+
+   The Bootstrap grid could not do this. Its columns divide the space
+   that is left, and a native time input carries its own width, so the
+   longer day names were pushing the boxes out of line row by row.
+
+   minmax(0, 1fr) and not 1fr: a grid track will not shrink below the
+   width of what is inside it unless the minimum is set to 0. Without
+   that, the time boxes push the row wider than the modal. */
+.hours-row {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr) 1.75rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Names the two time columns once, instead of every row repeating it.
+
+   Sticky, so the words stay visible when the modal body is scrolled
+   past them. The background is needed or the day rows show through as
+   they pass underneath. */
+.hours-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.15rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  background: var(--bs-modal-bg, var(--bs-body-bg, #ffffff));
+}
+
+.hours-sep {
+  text-align: center;
+}
+
+/* On a phone a day name, two time boxes and the word "to" will not fit
+   on one line. The name moves to its own line above them, and the
+   column headings go away because there is no longer a column to head. */
+@media (max-width: 575.98px) {
+  .hours-row {
+    grid-template-columns: minmax(0, 1fr) 1.75rem minmax(0, 1fr);
+    margin-bottom: 0.75rem;
+  }
+
+  .hours-row > .form-check {
+    grid-column: 1 / -1;
+  }
+
+  .hours-head {
+    display: none;
+  }
+}
+
+/* Why a scrollable modal needs this.
+
+   Bootstrap gives .modal-content "display: flex; flex-direction: column"
+   and, on a scrollable dialog, "max-height: 100%; overflow: hidden".
+   The plan is that .modal-body is a direct child, so it becomes the
+   flex item that takes the space left over and scrolls inside it.
+
+   Our modals put a <form> between .modal-content and the header, body
+   and footer, because the Save button in the footer has to submit the
+   form. So the form was the only flex item. A flex item will not shrink
+   below its own content unless it is told to, so the form stayed as
+   tall as the whole form, overflowed .modal-content, and was cut off by
+   that overflow: hidden. The body never scrolled because nothing had
+   limited its height. On a laptop screen the weekly opening hours were
+   showing one day and the rest, plus the Save button, were behind the
+   cut. Making the window smaller only helped because everything then
+   fitted and there was nothing left to cut.
+
+   So the form takes over the job .modal-content was doing: it becomes
+   the flex column, and min-height: 0 is what allows it to shrink to the
+   height available. Then .modal-body, which Bootstrap already marks
+   flex: 1 1 auto, gets a real height and its overflow-y: auto works. */
+.modal-dialog-scrollable .modal-content > form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+/* Same reason one level down: without this the body refuses to shrink
+   below its content and the scrollbar never appears. */
+.modal-dialog-scrollable .modal-content > form > .modal-body {
+  min-height: 0;
+}
+
+/* The header and footer keep their own height and stay in view while the
+   body scrolls between them. */
+.modal-dialog-scrollable .modal-content > form > .modal-header,
+.modal-dialog-scrollable .modal-content > form > .modal-footer {
+  flex: 0 0 auto;
 }
