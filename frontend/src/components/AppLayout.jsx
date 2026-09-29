@@ -38,7 +38,6 @@ import {
   IconPin,
   IconShieldUser,
   IconSignOut,
-  IconSun,
   IconUsers,
 } from './Icons';
 
@@ -83,9 +82,7 @@ export default function AppLayout() {
             expects a logo to take them. The dashboard has its own entry in
             the menu directly below. */}
         <Link to="/" className="app-sidebar-brand" title="Go to the public home page">
-          <span className="text-warning">
-            <IconSun size={20} />
-          </span>
+          <img src="/logo.png" alt="" width="30" height="30" className="brand-logo" />
           <span className="fw-semibold" style={{ fontSize: '0.95rem', lineHeight: 1.15 }}>
             Smart Solar
             <br />

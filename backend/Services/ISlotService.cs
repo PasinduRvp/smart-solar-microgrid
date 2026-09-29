@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ISlotService.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : Contract for managing bookable energy trading windows at a
  *               microgrid node.

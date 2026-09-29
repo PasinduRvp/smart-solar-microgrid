@@ -69,9 +69,6 @@ export default function StationFormModal({ station, onSave, onCancel }) {
   }
 
   function validate() {
-    if (!isEditing && !/^[A-Z0-9-]{3,20}$/.test(form.stationCode.trim().toUpperCase())) {
-      return 'Station code must be 3 to 20 characters of capital letters, digits or hyphens.';
-    }
     if (!form.name.trim()) return 'Enter the node name.';
     if (!form.addressLine.trim()) return 'Enter the street address.';
 
@@ -139,8 +136,10 @@ export default function StationFormModal({ station, onSave, onCancel }) {
       };
     }
 
+    // No stationCode is sent. The server generates it from the name.
+    // The browser cannot: it would have to know every code already in use,
+    // and two officers registering at once would pick the same one.
     return {
-      stationCode: form.stationCode.trim().toUpperCase(),
       name: form.name.trim(),
       location,
       capacityKwh: Number(form.capacityKwh),
@@ -183,17 +182,24 @@ export default function StationFormModal({ station, onSave, onCancel }) {
                     <label htmlFor="stationCode" className="form-label small fw-semibold">
                       Station code
                     </label>
+                    {/*
+                      Read only in both states. On a new node there is nothing
+                      to show yet, so the box carries the shape of the code as
+                      a placeholder and the help text says where it comes from.
+                    */}
                     <input
                       id="stationCode"
                       className="form-control font-monospace"
-                      placeholder="MG-COL-003"
-                      value={form.stationCode}
-                      onChange={(event) => update('stationCode', event.target.value.toUpperCase())}
-                      disabled={isEditing}
+                      placeholder="MG-XXX-000"
+                      value={isEditing ? form.stationCode : ''}
+                      readOnly
+                      disabled
                     />
-                    {isEditing && (
-                      <div className="form-text small">The code identifies the node permanently.</div>
-                    )}
+                    <div className="form-text small">
+                      {isEditing
+                        ? 'The code identifies the node permanently.'
+                        : 'Generated from the node name when you save.'}
+                    </div>
                   </div>
 
                   <div className="col-md-8">
@@ -326,49 +332,57 @@ export default function StationFormModal({ station, onSave, onCancel }) {
                         </div>
                       </div>
 
+                      {/*
+                        The rows use .hours-row, a four track CSS grid, not the
+                        Bootstrap grid. Bootstrap columns share whatever space
+                        is left over, and a time box brings its own width, so
+                        the long day names pushed the boxes further right on
+                        some rows than on others. Fixed tracks fix that.
+                      */}
                       <div className="col-12">
+                        <div className="hours-row hours-head text-uppercase text-body-secondary fw-semibold">
+                          <span>Day</span>
+                          <span>Opens</span>
+                          <span aria-hidden="true" />
+                          <span>Closes</span>
+                        </div>
+
                         {schedule.map((entry, index) => (
-                          <div className="row g-2 align-items-center mb-2" key={entry.dayOfWeek}>
-                            <div className="col-5 col-sm-4">
-                              <div className="form-check">
-                                <input
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id={`day-${entry.dayOfWeek}`}
-                                  checked={entry.enabled}
-                                  onChange={(event) =>
-                                    updateDay(index, 'enabled', event.target.checked)
-                                  }
-                                />
-                                <label className="form-check-label small" htmlFor={`day-${entry.dayOfWeek}`}>
-                                  {entry.dayOfWeek}
-                                </label>
-                              </div>
-                            </div>
-
-                            <div className="col">
+                          <div className="hours-row" key={entry.dayOfWeek}>
+                            <div className="form-check mb-0">
                               <input
-                                type="time"
-                                className="form-control form-control-sm"
-                                value={entry.openTime}
-                                onChange={(event) => updateDay(index, 'openTime', event.target.value)}
-                                disabled={!entry.enabled}
-                                aria-label={`${entry.dayOfWeek} opening time`}
+                                className="form-check-input"
+                                type="checkbox"
+                                id={`day-${entry.dayOfWeek}`}
+                                checked={entry.enabled}
+                                onChange={(event) =>
+                                  updateDay(index, 'enabled', event.target.checked)
+                                }
                               />
+                              <label className="form-check-label small" htmlFor={`day-${entry.dayOfWeek}`}>
+                                {entry.dayOfWeek}
+                              </label>
                             </div>
 
-                            <div className="col-auto text-body-secondary small">to</div>
+                            <input
+                              type="time"
+                              className="form-control form-control-sm"
+                              value={entry.openTime}
+                              onChange={(event) => updateDay(index, 'openTime', event.target.value)}
+                              disabled={!entry.enabled}
+                              aria-label={`${entry.dayOfWeek} opening time`}
+                            />
 
-                            <div className="col">
-                              <input
-                                type="time"
-                                className="form-control form-control-sm"
-                                value={entry.closeTime}
-                                onChange={(event) => updateDay(index, 'closeTime', event.target.value)}
-                                disabled={!entry.enabled}
-                                aria-label={`${entry.dayOfWeek} closing time`}
-                              />
-                            </div>
+                            <span className="hours-sep text-body-secondary small">to</span>
+
+                            <input
+                              type="time"
+                              className="form-control form-control-sm"
+                              value={entry.closeTime}
+                              onChange={(event) => updateDay(index, 'closeTime', event.target.value)}
+                              disabled={!entry.enabled}
+                              aria-label={`${entry.dayOfWeek} closing time`}
+                            />
                           </div>
                         ))}
                       </div>

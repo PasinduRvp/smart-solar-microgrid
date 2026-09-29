@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : NearbyStationDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : A microgrid node together with how far it is from the phone.
  *               Returned by the nearby search that backs the Android map screen.

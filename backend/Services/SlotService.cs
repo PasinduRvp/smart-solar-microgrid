@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : SlotService.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : Rules for creating and maintaining bookable energy trading
  *               windows. Generation reads the node's weekly schedule and
