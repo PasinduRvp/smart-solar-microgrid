@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : CreateStationRequestDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : Details a Backoffice officer supplies when registering a new
  *               microgrid node, as the assignment requires: GPS location,
@@ -19,11 +19,22 @@ namespace SolarMicrogrid.Api.Dtos.Stations;
 /// </summary>
 public sealed class CreateStationRequestDto
 {
-    /// <summary>Reference code, unique across nodes, for example "MG-COL-004".</summary>
-    [Required(AllowEmptyStrings = false, ErrorMessage = "Station code is required.")]
+    /// <summary>
+    /// Reference code, unique across nodes, for example "MG-COL-004".
+    /// </summary>
+    /// <remarks>
+    /// Optional. Leave it out and the server generates the next free code
+    /// from the node name, for example "Dehiwala Coastal Hub" becomes
+    /// MG-DEH-001.
+    ///
+    /// It is generated on the server, not in the browser, because the code
+    /// has to be unique and only the server can see every node. Two officers
+    /// registering a node at the same moment would otherwise pick the same
+    /// number, and the unique index would reject the second one.
+    /// </remarks>
     [RegularExpression(@"^[A-Z0-9\-]{3,20}$", ErrorMessage =
         "Station code must be 3 to 20 characters of capital letters, digits or hyphens.")]
-    public string StationCode { get; init; } = string.Empty;
+    public string? StationCode { get; init; }
 
     /// <summary>Display name of the node.</summary>
     [Required(AllowEmptyStrings = false, ErrorMessage = "Station name is required.")]

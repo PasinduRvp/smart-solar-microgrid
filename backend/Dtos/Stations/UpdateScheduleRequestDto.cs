@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : UpdateScheduleRequestDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : Replacement weekly operating hours for a microgrid node. The
  *               assignment lists updating node schedules as a Backoffice duty.
