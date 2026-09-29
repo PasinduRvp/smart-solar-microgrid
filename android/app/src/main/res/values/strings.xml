@@ -173,12 +173,29 @@
     <string name="booking_new_title">Book a window</string>
     <string name="booking_edit_title">Change booking</string>
     <string name="booking_pick_day">Pick a day</string>
+
+    <!--
+      The three steps of the screen, each on its own card. The number says
+      the order matters: the day decides which windows exist.
+    -->
+    <string name="booking_step_day">1 \u00b7 Pick a day</string>
+    <string name="booking_step_window">2 \u00b7 Pick a window</string>
+    <string name="booking_step_energy">3 \u00b7 How much energy</string>
     <string name="booking_pick_day_help">Bookings must be within the next 7 days.</string>
     <string name="booking_pick_window">Pick a window</string>
-    <string name="booking_no_windows">No windows are open at this node on that day.</string>
+    <string name="booking_no_windows">No booking windows on %1$s.\n\nThe node is closed that day, or no windows have been opened yet. Try another day.</string>
     <string name="booking_window_row">%1$s to %2$s</string>
     <!-- Day name on the first line, date on the second. -->
-    <string name="booking_day_chip">%1$s\n%2$s</string>
+    <!--
+      One line, not two.
+
+      A Chip does not wrap, so the old "%1$s\n%2$s" threw the date away and
+      every chip showed only the day name. With seven chips called Tue, Wed,
+      Thu there was no way to tell which date was which.
+    -->
+    <string name="booking_day_chip">%1$s %2$s</string>
+    <!-- The same day, on one line, for sentences. For example: Tue 29 Sep. -->
+    <string name="booking_day_inline">%1$s %2$s</string>
     <plurals name="booking_window_free">
         <item quantity="one">%1$d of %2$d place free</item>
         <item quantity="other">%1$d of %2$d places free</item>
