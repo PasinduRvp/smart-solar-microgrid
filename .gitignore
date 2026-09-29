@@ -155,6 +155,20 @@ obj/
 [Dd]ebug/
 [Rr]elease/
 
+# The two rules above are for Visual Studio build output. They also matched
+# android/app/src/debug/, which is not build output at all: it is the source
+# folder Android uses for files that apply only to a debug build. Ours holds
+# the network rule that lets a debug build reach the API over plain HTTP.
+#
+# Without these exceptions that file is never committed, and a member who
+# clones the repository gets the release rule in their debug build. The app
+# then fails with "CLEARTEXT communication to ... not permitted".
+#
+# The directory has to be un-ignored before its contents can be, because git
+# does not look inside a directory it has already excluded.
+!android/app/src/debug/
+!android/app/src/debug/**
+
 # Secrets: Mongo connection string, JWT signing key. NEVER commit.
 # A committed *.example.json template shows the shape instead.
 appsettings.Development.json
