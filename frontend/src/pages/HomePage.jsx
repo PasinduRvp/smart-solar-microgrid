@@ -167,7 +167,9 @@ export default function HomePage() {
       <nav className="navbar navbar-dark landing-hero py-3">
         <div className="container">
           <span className="navbar-brand d-flex align-items-center gap-2 mb-0">
-            <span className="text-warning"><IconSun /></span>
+            {/* The real logo. A white plate behind it, because the logo is
+                drawn in navy and green and the navbar is navy. */}
+            <img src="/logo.png" alt="" width="34" height="34" className="brand-logo" />
             <span className="fw-semibold">Smart Solar Microgrid</span>
           </span>
           {isSignedInStaff ? (
@@ -212,6 +214,11 @@ export default function HomePage() {
                 approved and recorded in one place.
               </p>
 
+              {/* Two actions only. One primary, one secondary.
+                  A third choice of equal weight makes a visitor stop and
+                  read instead of act, and the features section is directly
+                  below this, so a "see how it works" link only repeated a
+                  scroll they were going to make anyway. */}
               <div className="d-flex flex-wrap gap-2 mb-5">
                 <Link to={primaryHref} className="btn btn-primary btn-lg px-4">
                   {primaryLabel}
@@ -221,9 +228,6 @@ export default function HomePage() {
                     Register as a prosumer
                   </Link>
                 )}
-                <a href="#how" className="btn btn-outline-light btn-lg px-4">
-                  See how it works
-                </a>
               </div>
 
               {/* The rules that actually govern a booking, stated plainly. */}
@@ -243,47 +247,51 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* A representative booking, so the abstract description becomes
-                something concrete a first-time visitor can picture. */}
+            {/* An animated solar scene, in place of a static picture.
+
+                It is drawn with CSS transforms and one SVG. No 3D library is
+                pulled in for it, because the whole scene is a handful of
+                boxes and the page has to stay quick to load.
+
+                Everything here is decoration, so it is hidden from screen
+                readers and it stops moving for anyone who has asked their
+                system to reduce motion. */}
             <div className="col-lg-5">
-              <div className="card border-0 shadow-lg">
-                <div className="card-body p-4">
-                  <div className="d-flex justify-content-between align-items-start mb-3">
-                    <div>
-                      <div className="text-body-secondary small">Booking reference</div>
-                      <div className="font-monospace fw-semibold">RSV-20260920-4F2A</div>
-                    </div>
-                    <span className="badge text-bg-success">Approved</span>
-                  </div>
+              <div className="solar-scene" aria-hidden="true">
 
-                  <dl className="row small mb-3">
-                    <dt className="col-5 fw-normal text-body-secondary">Node</dt>
-                    <dd className="col-7 mb-2">Dehiwala Coastal Hub</dd>
-
-                    <dt className="col-5 fw-normal text-body-secondary">Window</dt>
-                    <dd className="col-7 mb-2">Tomorrow, 10:00 &ndash; 12:00</dd>
-
-                    <dt className="col-5 fw-normal text-body-secondary">Energy</dt>
-                    <dd className="col-7 mb-2">12.5 kWh delivered</dd>
-
-                    <dt className="col-5 fw-normal text-body-secondary">Rate</dt>
-                    <dd className="col-7 mb-0">Rs 42.50 / kWh</dd>
-                  </dl>
-
-                  <div className="d-flex align-items-center gap-3 bg-body-tertiary rounded p-3">
-                    <span className="landing-icon"><IconQr /></span>
-                    <div className="small">
-                      <div className="fw-semibold">Transaction code issued</div>
-                      <div className="text-body-secondary">
-                        Scanned and verified at the node
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="text-body-secondary mt-3 mb-0" style={{ fontSize: '0.72rem' }}>
-                    Example booking, shown for illustration.
-                  </p>
+                {/* The sun. The rays turn, the glow breathes. */}
+                <div className="solar-sun">
+                  <span className="solar-sun-glow" />
+                  <span className="solar-sun-rays" />
+                  <span className="solar-sun-core" />
                 </div>
+
+                {/* The panel, tilted back in 3D and floating gently. */}
+                <div className="solar-stage">
+                  <div className="solar-panel">
+                    {Array.from({ length: 24 }, (unused, cell) => (
+                      <span
+                        key={cell}
+                        className="solar-cell"
+                        style={{ animationDelay: `${(cell % 6) * 0.18}s` }}
+                      />
+                    ))}
+                    <span className="solar-sheen" />
+                  </div>
+                  <span className="solar-mast" />
+                </div>
+
+                {/* Energy running from the panel down to the grid node. */}
+                <div className="solar-flow">
+                  <span className="solar-spark" />
+                  <span className="solar-spark" />
+                  <span className="solar-spark" />
+                </div>
+
+                <div className="solar-node">
+                  <span className="solar-node-pulse" />
+                </div>
+
               </div>
             </div>
           </div>
@@ -404,7 +412,7 @@ export default function HomePage() {
       <footer className="landing-hero py-4">
         <div className="container d-flex flex-wrap justify-content-between align-items-center gap-2">
           <div className="d-flex align-items-center gap-2">
-            <span className="text-warning"><IconSun /></span>
+            <img src="/logo.png" alt="" width="28" height="28" className="brand-logo" />
             <span className="fw-semibold">Smart Solar Microgrid Trading System</span>
           </div>
           <span className="small" style={{ color: 'rgba(247,243,236,0.6)' }}>
