@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : EnergyBookingSlot.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-17
  * Description : A bookable energy trading time window belonging to one station.
  *               Slots are generated for the coming seven days, matching the
