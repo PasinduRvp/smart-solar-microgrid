@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : AndroidManifest.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : Lists the permissions the app needs, the hardware it can
+                use, and the screens Android may start.
+
+  Permissions
+                INTERNET              - calls the C# Web API.
+                ACCESS_NETWORK_STATE  - lets the app say no connection
+                                        instead of waiting for a timeout.
+                CAMERA                - the Grid Operator scans the QR code.
+                ACCESS_FINE_LOCATION  - centres the map on the user, so
+                ACCESS_COARSE_LOCATION  nearby nodes can be shown.
+
+                INTERNET is granted when the app is installed.
+                CAMERA and the two LOCATION ones are dangerous permissions.
+                They must ALSO be asked for at run time on API 23 and up.
+                Listing them here is needed, but not enough on its own.
+  =========================================================================
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ===== Network ===================================================== -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- ===== QR scanning (Grid Operator) ================================= -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- ===== Maps / nearby nodes ========================================= -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!--
+      required="false" so the app still installs on a device without a camera
+      or GPS. A Prosumer never scans anything, so refusing to install for them
+      would be wrong; the operator screens check availability at runtime.
+    -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+
+    <application
+        android:name=".SolarApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SolarMicrogrid"
+        tools:targetApi="31">
+
+        <!--
+          The launcher. It draws nothing of its own - it reads the saved
+          session and redirects, which is why it is the only exported
+          activity: no other screen should be openable from outside the app.
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          adjustResize so the layout shrinks when the keyboard appears and the
+          Sign in button stays reachable on a short screen.
+        -->
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.home.ProsumerHomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.home.OperatorHomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.map.NearbyNodesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.map.OsmMapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.map.MapActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.map.NodeDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.booking.MyBookingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.booking.NewBookingActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.booking.BookingSummaryActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.booking.BookingQrActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.operator.ScanResultActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.operator.TransferSummaryActivity"
+            android:exported="false" />
+
+        <!--
+          The Google Maps key.
+
+          The value is NOT written here. build.gradle reads it from
+          local.properties and puts it in during the build. local.properties
+          is not in Git, so the key is never committed.
+
+          With no key the map draws an empty grid. Everything else still works.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+    </application>
+
+</manifest>

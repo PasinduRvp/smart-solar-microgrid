@@ -1,0 +1,15 @@
+<!--
+  ===========================================================================
+  File        : bg_circle_primary_container.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Description : A filled circle, used behind the brand mark and behind the
+                initials on the profile screen.
+
+  ?attr/colorPrimaryContainer rather than a fixed colour, so the circle
+  follows the theme and stays legible in dark mode.
+  ===========================================================================
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="?attr/colorPrimaryContainer" />
+</shape>

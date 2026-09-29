@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : dimens.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : The spacing scale every screen measures from.
+
+  Why a scale and not free numbers
+                Margins chosen per screen drift apart. 12dp here, 14dp
+                there, 20dp somewhere else. None of them looks broken on
+                its own. But the screens stop lining up with each other.
+
+                These are all multiples of 8dp. That is the grid the
+                Android layouts use. Anything built from them lines up.
+
+                Change a value here and every screen moves together.
+  =========================================================================
+-->
+<resources>
+
+    <!-- Spacing scale -->
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">24dp</dimen>
+    <dimen name="space_xl">32dp</dimen>
+
+    <!-- The left and right margin every screen shares. Content that starts at
+         the same x position on every screen is the single biggest thing that
+         makes an app feel aligned. -->
+    <dimen name="screen_gutter">24dp</dimen>
+
+    <!-- Vertical gap between two form fields. -->
+    <dimen name="field_gap">16dp</dimen>
+
+    <!-- 52dp: comfortably above the 48dp minimum touch target. -->
+    <dimen name="button_height">52dp</dimen>
+
+    <dimen name="card_radius">16dp</dimen>
+    <dimen name="avatar_size">56dp</dimen>
+    <dimen name="brand_mark_size">64dp</dimen>
+
+</resources>

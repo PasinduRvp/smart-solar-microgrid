@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : activity_nearby_nodes.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : The list of grid nodes, nearest first. Task C2.
+
+  Why a list as well as a map
+               The map needs a Google Maps key. This list needs nothing but
+               the Web API. It shows the same nearby node data, so the
+               feature can be demonstrated on any phone.
+
+               It is also faster to read. A user who wants the closest node
+               gets the answer in the first row, with no panning or zooming.
+
+  Layout      A toolbar with a Map action. Then one line of help text. Then
+               the list. The empty message sits in the middle, and is only
+               shown when there are no nodes at all.
+  =========================================================================
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.map.NearbyNodesActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingStart="@dimen/space_sm"
+        android:paddingEnd="@dimen/space_sm"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        app:title="@string/nearby_title"
+        app:titleTextAppearance="?attr/textAppearanceTitleLarge" />
+
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_gutter"
+        android:paddingTop="@dimen/space_xs"
+        android:paddingEnd="@dimen/screen_gutter"
+        android:paddingBottom="@dimen/space_sm"
+        android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+        tools:text="Sorted by distance from you." />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!--
+          Pull down to refresh. Free battery bays change as other prosumers
+          book, so the user needs a way to ask the server again.
+        -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/screen_gutter"
+                android:paddingEnd="@dimen/screen_gutter"
+                android:paddingBottom="@dimen/space_lg"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_nearby_node" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!--
+          The empty state. An icon above the words, because a single line of
+          grey text in the middle of a blank screen reads as something that
+          failed to load rather than as a screen with nothing in it yet.
+        -->
+        <!--
+          The empty state. An icon above the words, because one line of
+          grey text alone in the middle of a screen reads as something
+          that failed to load rather than a screen with nothing in it.
+        -->
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/space_md"
+            android:gravity="center_horizontal"
+            android:paddingStart="@dimen/screen_gutter"
+            android:paddingEnd="@dimen/screen_gutter"
+            android:text="@string/nearby_empty"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+            android:visibility="gone"
+            app:drawableTint="?attr/colorOnSurfaceVariant"
+            app:drawableTopCompat="@drawable/ic_place_24"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+</LinearLayout>

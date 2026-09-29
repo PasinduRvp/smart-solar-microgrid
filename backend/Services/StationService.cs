@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : StationService.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-19
  * Description : Every rule governing solar microgrid nodes. Called from the
  *               station management screens in the React back office and from
@@ -135,6 +135,71 @@ public sealed partial class StationService : IStationService
         return ServiceResult.Success<IReadOnlyList<NearbyStationDto>>(nearby);
     }
 
+    /// <summary>
+    /// Builds the next free code for a new node, such as MG-DEH-001.
+    /// </summary>
+    /// <remarks>
+    /// The shape is MG-XXX-NNN. XXX comes from the node name, so the code
+    /// means something to whoever reads it: "Dehiwala Coastal Hub" gives
+    /// DEH. NNN is the next free number for that prefix.
+    ///
+    /// Every node is read once and the numbers worked out in memory. Asking
+    /// the database "is MG-DEH-001 free, is MG-DEH-002 free" one at a time
+    /// would be up to 999 round trips for one registration.
+    ///
+    /// The unique index on stationCode is still the thing that guarantees
+    /// uniqueness. This only picks a number that is free right now.
+    /// </remarks>
+    private async Task<string> GenerateStationCodeAsync(
+        string nodeName,
+        CancellationToken cancellationToken)
+    {
+        string prefix = BuildPrefix(nodeName);
+
+        IReadOnlyList<SolarStationInfo> all = await _stationRepository
+            .GetAllAsync(cancellationToken)
+            .ConfigureAwait(false);
+
+        string start = $"MG-{prefix}-";
+        int highest = 0;
+
+        foreach (SolarStationInfo station in all)
+        {
+            if (!station.StationCode.StartsWith(start, StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            string tail = station.StationCode[start.Length..];
+            if (int.TryParse(tail, NumberStyles.None, CultureInfo.InvariantCulture, out int number)
+                && number > highest)
+            {
+                highest = number;
+            }
+        }
+
+        return $"{start}{(highest + 1).ToString("000", CultureInfo.InvariantCulture)}";
+    }
+
+    /// <summary>
+    /// Three letters taken from the node name, for the middle of the code.
+    /// </summary>
+    /// <remarks>
+    /// Letters only, so "St. Annes Hub" does not produce "ST.".
+    /// A short or letterless name is padded with X, because the code must
+    /// keep its shape whatever the node is called.
+    /// </remarks>
+    private static string BuildPrefix(string nodeName)
+    {
+        string letters = new(
+            (nodeName ?? string.Empty)
+                .Where(char.IsLetter)
+                .Take(3)
+                .ToArray());
+
+        return letters.ToUpperInvariant().PadRight(3, 'X');
+    }
+
     /// <inheritdoc />
     public async Task<ServiceResult<StationResponseDto>> CreateAsync(
         CreateStationRequestDto request,
@@ -142,16 +207,27 @@ public sealed partial class StationService : IStationService
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        string code = request.StationCode.Trim().ToUpperInvariant();
+        string code;
 
-        SolarStationInfo? existing = await _stationRepository
-            .GetByCodeAsync(code, cancellationToken)
-            .ConfigureAwait(false);
-
-        if (existing is not null)
+        if (string.IsNullOrWhiteSpace(request.StationCode))
         {
-            return ServiceResult.Failure<StationResponseDto>(
-                ServiceErrorType.Conflict, $"A microgrid node with code {code} already exists.");
+            code = await GenerateStationCodeAsync(request.Name, cancellationToken)
+                .ConfigureAwait(false);
+        }
+        else
+        {
+            code = request.StationCode.Trim().ToUpperInvariant();
+
+            SolarStationInfo? existing = await _stationRepository
+                .GetByCodeAsync(code, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (existing is not null)
+            {
+                return ServiceResult.Failure<StationResponseDto>(
+                    ServiceErrorType.Conflict,
+                    $"A microgrid node with code {code} already exists.");
+            }
         }
 
         ServiceResult<StationResponseDto>? scheduleError =

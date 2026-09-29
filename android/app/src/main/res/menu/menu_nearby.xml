@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : menu_nearby.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Description : The Map action in the nearby nodes toolbar.
+
+  The list is the main screen because it needs no Google Maps key. The map
+  is one tap away for anyone who has added a key.
+  =========================================================================
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_map"
+        android:icon="@drawable/ic_place_24"
+        android:title="@string/action_open_map"
+        app:showAsAction="always" />
+
+</menu>
