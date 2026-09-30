@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ===========================================================================
+  File        : menu_profile.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Description : The Edit action in the profile screen's toolbar.
+
+  showAsAction="always" so it is a visible pencil rather than hidden behind an
+  overflow menu. It is the only thing the user can do on this screen when it
+  opens, so it should not have to be discovered.
+
+  The item is hidden while editing - Cancel and Save are on screen then, and
+  an Edit button during editing would be meaningless.
+  ===========================================================================
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_edit_24"
+        android:title="@string/action_edit"
+        app:showAsAction="always" />
+
+</menu>
