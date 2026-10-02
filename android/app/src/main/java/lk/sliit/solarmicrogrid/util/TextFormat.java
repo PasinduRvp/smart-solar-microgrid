@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : TextFormat.java
  * Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : Small text helpers used by more than one screen.
  *

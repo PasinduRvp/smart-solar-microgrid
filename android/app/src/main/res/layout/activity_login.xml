@@ -3,7 +3,7 @@
   =========================================================================
   File        : activity_login.xml
   Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
-  Author      : <Your Full Name> (<IT Number>)
+  Author      : M T A J Yapa (IT 23278530)
   Created     : 2026-09-20
   Description : The sign in screen.
 
@@ -46,20 +46,26 @@
         android:paddingEnd="@dimen/screen_gutter"
         android:paddingBottom="@dimen/space_xl">
 
-        <!-- Brand mark: a filled circle with the sun icon centred inside. -->
-        <FrameLayout
+        <!--
+          The brand mark. The real logo, not a stand in glyph.
+          adjustViewBounds keeps it square as the logo file is square.
+
+          The emblem on its own, not the full lockup. The lockup carries
+          the words SMART SOLAR under the emblem, and at this size those
+          words were only a few pixels tall and turned into a smudge. The
+          screen prints the name as real text just below anyway, so the
+          drawn version was the same words a second time.
+
+          It fades and grows in when the screen opens. LoginActivity runs
+          that; there is nothing to set here.
+        -->
+        <ImageView
+            android:id="@+id/imgLogo"
             android:layout_width="@dimen/brand_mark_size"
             android:layout_height="@dimen/brand_mark_size"
-            android:background="@drawable/bg_circle_primary_container">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_solar_24" />
-
-        </FrameLayout>
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logo_mark" />
 
         <TextView
             android:layout_width="wrap_content"
