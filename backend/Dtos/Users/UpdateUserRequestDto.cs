@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : UpdateUserRequestDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-19
  * Description : Editable details of an existing account. Used both by a
  *               Backoffice officer updating any account, and by a prosumer
