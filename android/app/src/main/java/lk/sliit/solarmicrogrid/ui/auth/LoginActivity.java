@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : LoginActivity.java
  * Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : The sign in screen. Task B2.
  *
@@ -29,6 +29,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,15 @@ import lk.sliit.solarmicrogrid.ui.Navigation;
 
 public final class LoginActivity extends BaseActivity {
 
+    /** How small the logo starts before it grows to full size. */
+    private static final float LOGO_ENTER_FROM = 0.85f;
+
+    /** How long the logo takes to arrive, in milliseconds. */
+    private static final long LOGO_ENTER_MS = 520L;
+
+    /** A beat before it starts, so the screen has settled first. */
+    private static final long LOGO_ENTER_DELAY_MS = 80L;
+
     private ActivityLoginBinding binding;
     private AuthRepository authRepository;
 
@@ -58,6 +68,8 @@ public final class LoginActivity extends BaseActivity {
         setContentView(binding.getRoot());
         applySystemBarInsets(binding.root);
 
+        playLogoEntrance();
+
         authRepository = AuthRepository.create();
 
         binding.btnSignIn.setOnClickListener(view -> attemptSignIn());
@@ -68,6 +80,36 @@ public final class LoginActivity extends BaseActivity {
         // A red message under a box the user has already fixed is confusing.
         clearErrorWhileTyping(binding.tilIdentifier);
         clearErrorWhileTyping(binding.tilPassword);
+    }
+
+    /**
+     * Fades and grows the logo in when the screen opens.
+     *
+     * The first screen of an app is a blank wall until something moves on
+     * it. A short entrance gives the eye somewhere to land and makes the
+     * app feel like it started rather than just appeared.
+     *
+     * It is kept small on purpose. 0.85 to full size over half a second,
+     * slowing as it arrives. Anything longer and a user signing in for the
+     * second time is waiting on decoration.
+     *
+     * Nothing depends on it finishing. The boxes and the button are usable
+     * from the first frame.
+     */
+    private void playLogoEntrance() {
+
+        binding.imgLogo.setAlpha(0f);
+        binding.imgLogo.setScaleX(LOGO_ENTER_FROM);
+        binding.imgLogo.setScaleY(LOGO_ENTER_FROM);
+
+        binding.imgLogo.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setStartDelay(LOGO_ENTER_DELAY_MS)
+                .setDuration(LOGO_ENTER_MS)
+                .setInterpolator(new DecelerateInterpolator())
+                .start();
     }
 
     private void attemptSignIn() {

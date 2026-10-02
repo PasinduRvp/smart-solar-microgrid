@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : AuthController.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-19
  * Description : Sign in and prosumer self registration endpoints. Used by the
  *               React web application (Backoffice and Grid Operator sign in)

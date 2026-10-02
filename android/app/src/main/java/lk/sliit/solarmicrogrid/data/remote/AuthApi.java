@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : AuthApi.java
  * Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : The two endpoints that need no token: sign in, and register
  *               as a Solar Prosumer.
