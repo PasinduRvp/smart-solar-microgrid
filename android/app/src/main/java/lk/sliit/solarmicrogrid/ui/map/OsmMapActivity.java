@@ -249,8 +249,9 @@ public final class OsmMapActivity extends BaseActivity {
             marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
             marker.setTitle(node.getName());
             marker.setSubDescription(subtitleFor(node));
+            // Brand green for an open node, muted for a closed one.
             marker.setIcon(markerIcon(node.isActive()
-                    ? R.color.solar_amber
+                    ? R.color.brand_green_deep
                     : R.color.ink_muted));
 
             // Tapping a marker opens that node. The node is attached to the

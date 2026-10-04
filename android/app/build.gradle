@@ -35,6 +35,22 @@ if (localPropertiesFile.exists()) {
 }
 def mapsApiKey = localProperties.getProperty("MAPS_API_KEY", "")
 
+/*
+ * The address of the Web API, read from local.properties for the same reason
+ * the maps key is.
+ *
+ * It is not a secret, but it changes per machine and per network. It was
+ * written into ApiConfig.java, so every member had to edit a source file to
+ * run the app, and whoever committed last forced their own IP on everyone
+ * else. Here each member keeps their own value in a file that is never
+ * committed.
+ *
+ * The default is the emulator's alias for the machine running it, so a member
+ * who has added nothing still gets a project that builds and points somewhere
+ * sensible.
+ */
+def apiBaseUrl = localProperties.getProperty("API_BASE_URL", "http://10.0.2.2:8081/")
+
 android {
     namespace 'lk.sliit.solarmicrogrid'
     compileSdk 35
@@ -58,6 +74,12 @@ android {
         // No key means the OpenStreetMap screen is used instead. That one
         // needs no key and no billing account.
         buildConfigField "boolean", "HAS_MAPS_KEY", (!mapsApiKey.trim().isEmpty()).toString()
+
+        // The Web API address, from local.properties. ApiConfig reads it back
+        // out of BuildConfig, so no Java file holds a machine specific value.
+        // The quotes inside the string are needed: buildConfigField writes the
+        // text straight into generated Java, where a String needs them.
+        buildConfigField "String", "API_BASE_URL", "\"${apiBaseUrl}\""
     }
 
     buildFeatures {

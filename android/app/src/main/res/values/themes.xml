@@ -16,21 +16,23 @@
 
     <style name="Base.Theme.SolarMicrogrid" parent="Theme.Material3.DayNight.NoActionBar">
 
-        <item name="colorPrimary">@color/solar_amber</item>
+        <item name="colorPrimary">@color/brand_green_deep</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryContainer">@color/solar_amber_light</item>
-        <item name="colorOnPrimaryContainer">@color/solar_amber_dark</item>
+        <item name="colorPrimaryContainer">@color/brand_green_container</item>
+        <item name="colorOnPrimaryContainer">@color/brand_green_deeper</item>
 
-        <item name="colorSecondary">@color/grid_teal</item>
+        <item name="colorSecondary">@color/brand_navy</item>
         <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSecondaryContainer">@color/grid_teal_light</item>
-        <item name="colorOnSecondaryContainer">@color/grid_teal</item>
+        <item name="colorSecondaryContainer">@color/brand_green_container</item>
+        <item name="colorOnSecondaryContainer">@color/brand_navy</item>
 
         <item name="colorError">@color/status_danger</item>
 
         <item name="android:colorBackground">@color/surface</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorSurfaceContainer">@color/surface_container</item>
+        <item name="colorSurfaceContainerLow">@color/surface_container_low</item>
+        <item name="colorSurfaceContainerHigh">@color/surface_container_high</item>
         <item name="colorOnSurface">@color/ink</item>
         <item name="colorOnSurfaceVariant">@color/ink_muted</item>
         <item name="colorOutline">@color/hairline</item>
@@ -38,8 +40,15 @@
         <item name="android:statusBarColor">@color/surface</item>
         <item name="android:windowLightStatusBar">true</item>
 
-        <!-- Every MaterialCardView picks this up, so the look is set once. -->
+        <!--
+          Set once here, so every card, chip, button and toolbar in the app
+          looks the same without each layout repeating the attributes. A
+          screen added later is styled correctly by default.
+        -->
         <item name="materialCardViewStyle">@style/Widget.Solar.Card</item>
+        <item name="chipStyle">@style/Widget.Solar.Chip</item>
+        <item name="materialButtonStyle">@style/Widget.Solar.Button</item>
+        <item name="toolbarStyle">@style/Widget.Solar.Toolbar</item>
     </style>
 
     <style name="Theme.SolarMicrogrid" parent="Base.Theme.SolarMicrogrid" />
@@ -59,12 +68,67 @@
       background is the raised surface, so a card is visible as a panel and
       not only as a thin outline.
     -->
-    <style name="Widget.Solar.Card" parent="Widget.Material3.CardView.Outlined">
+    <!--
+      Filled, not Outlined.
+
+      The outlined card drew a 1dp grey line around every panel. With
+      several cards on a screen that is a lot of lines, and it is the main
+      reason the app looked dated. A filled card separates itself from the
+      page by its tone instead, which is quieter and is what Material 3
+      does by default.
+    -->
+    <style name="Widget.Solar.Card" parent="Widget.Material3.CardView.Filled">
         <item name="cardBackgroundColor">?attr/colorSurfaceContainer</item>
         <item name="cardCornerRadius">@dimen/card_radius</item>
-        <item name="cardElevation">0dp</item>
-        <item name="strokeColor">?attr/colorOutline</item>
-        <item name="strokeWidth">1dp</item>
+
+        <!--
+          1dp, not 0. The tone alone separates a card from the page, but
+          only just. A shadow this small is barely a shade under the lower
+          edge and it is what stops the white cards reading as holes cut in
+          the page. On the dark theme a shadow is invisible anyway, so it
+          costs that theme nothing.
+        -->
+        <item name="cardElevation">1dp</item>
+    </style>
+
+    <!--
+      Filter chips, for the day picker and the status filters.
+
+      checkedIconVisible is off. The tick the chip normally adds on
+      selection makes the chip grow, so the whole row shifts sideways when
+      the user taps. The filled background already says which one is on.
+    -->
+    <style name="Widget.Solar.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipMinHeight">@dimen/chip_height</item>
+        <item name="chipCornerRadius">@dimen/chip_radius</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="ensureMinTouchTargetSize">true</item>
+    </style>
+
+    <!--
+      The main action button. 16dp corners to match the cards, and a height
+      that is easy to hit without filling a third of the screen.
+    -->
+    <style name="Widget.Solar.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">@dimen/button_radius</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <!--
+      A flat top bar. No shadow under it, because the page behind already
+      scrolls under the bar and a shadow on a flat colour only adds a
+      smudge.
+    -->
+    <style name="Widget.Solar.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:elevation">0dp</item>
+        <item name="titleTextAppearance">?attr/textAppearanceTitleLarge</item>
+        <item name="titleTextColor">?attr/colorOnSurface</item>
+        <item name="navigationIconTint">?attr/colorOnSurface</item>
     </style>
 
     <style name="TextAppearance.Solar.Title" parent="TextAppearance.Material3.HeadlineSmall">
@@ -74,6 +138,26 @@
 
     <style name="TextAppearance.Solar.Subtitle" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!--
+      The small heading above a group of fields, for example PICK A DAY.
+
+      Small, spaced out and in the muted ink. It has to be clearly a label
+      and not a sentence, so the eye skips over it when reading down the
+      page and comes back to it only when looking for a section.
+    -->
+    <style name="TextAppearance.Solar.SectionLabel" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.09</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- The heading of one card. Bigger than a section label, not a page title. -->
+    <style name="TextAppearance.Solar.CardTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

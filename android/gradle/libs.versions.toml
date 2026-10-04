@@ -1,0 +1,82 @@
+# ===========================================================================
+# File        : libs.versions.toml
+# Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+# Description : One place where every dependency version is declared.
+#
+# Why a version catalog
+#               Four people work on this module. If each build.gradle carried
+#               its own version numbers they would drift apart and produce the
+#               "duplicate class" errors that are painful to unpick. Declaring
+#               each version once here means an upgrade is a one line change.
+#
+# On "no frameworks"
+#               The assignment forbids CROSS-PLATFORM frameworks (Flutter,
+#               React Native, Xamarin). Retrofit, OkHttp and Gson are ordinary
+#               native Android libraries written for the Android/JVM platform
+#               only - the app is still a pure native Android application, and
+#               local persistence is still Android's own SQLite.
+# ===========================================================================
+
+# NOTE on the AndroidX versions below
+#   The New Project wizard generated library versions that need Android Gradle
+#   plugin 8.9.1 and compileSdk 36, while generating AGP 8.8.0 and compileSdk
+#   35 - so the project did not build as created. These are pinned to the
+#   newest releases AGP 8.8.0 accepts. Raising them again means raising "agp"
+#   and compileSdk in app/build.gradle at the same time.
+
+[versions]
+agp = "8.8.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.3"
+constraintlayout = "2.1.4"
+recyclerview = "1.3.2"
+swiperefresh = "1.1.0"
+
+# --- Networking ---
+# Retrofit turns a Java interface into HTTP calls; Gson converts JSON to
+# objects; the logging interceptor prints requests to Logcat while developing.
+retrofit = "2.11.0"
+okhttp = "4.12.0"
+
+# === Maps and location ===
+# 18.2.0 rather than the 19.x line: 19 requires a newer Android Gradle plugin
+# than this project uses. 18.2.0 has every feature the assignment needs.
+playServicesMaps = "18.2.0"
+playServicesLocation = "21.0.1"
+
+# OpenStreetMap. It needs no API key and no billing account, so the map
+# works on any phone. Used when no Google Maps key has been set.
+osmdroid = "6.1.20"
+
+# QR codes. zxing core draws them. zxing-android-embedded scans them with
+# the camera. Both are plain Android libraries, not cross platform ones.
+zxingCore = "3.5.3"
+zxingEmbedded = "4.3.0"
+
+[libraries]
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+swiperefresh = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefresh" }
+
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+osmdroid = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid" }
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxingCore" }
+zxing-embedded = { group = "com.journeyapps", name = "zxing-android-embedded", version.ref = "zxingEmbedded" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
