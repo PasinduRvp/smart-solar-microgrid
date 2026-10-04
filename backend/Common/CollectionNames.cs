@@ -14,7 +14,7 @@
  *               Declaring them once means a typo becomes a compile error.
  * ---------------------------------------------------------------------------
  */
-
+//
 namespace SolarMicrogrid.Api.Common;
 
 /// <summary>

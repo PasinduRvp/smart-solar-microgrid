@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ApiConfig.java
  * Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
- * Author      : NIMSARA R V P P (IT 23215306)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : The address of the C# Web API, and how long to wait for it.
  *

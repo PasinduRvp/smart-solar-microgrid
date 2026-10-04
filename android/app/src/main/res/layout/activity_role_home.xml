@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : activity_role_home.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : M T A J Yapa (IT 23278530)
+  Created     : 2026-09-20
+  Description : The screen the user lands on after signing in.
+
+  One layout, two screens
+               ProsumerHomeActivity and OperatorHomeActivity both use this
+               file. Each sets its own title and shows only its own parts.
+
+  Why the actions are a grid, not a column
+               A column of identical wide buttons gives the eye nothing to
+               aim at, and every choice looks equally important. Two columns
+               of cards with an icon each are quicker to scan and to tap,
+               and they fill the screen instead of leaving it empty below
+               the last button.
+
+  The second slot holds one card or the other
+               A prosumer sees My bookings there. An operator sees Scan QR
+               code. Only one is ever visible, so neither role is left
+               looking at a gap.
+
+  Order        Who you are, then your numbers, then what you can do, then
+               sign out. Sign out is last and quiet, because it undoes
+               things and is used least.
+  =========================================================================
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingStart="@dimen/space_md"
+        android:paddingEnd="@dimen/space_md"
+        app:contentInsetStart="0dp"
+        app:titleTextAppearance="?attr/textAppearanceTitleLarge"
+        tools:title="Prosumer dashboard" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_gutter"
+            android:paddingTop="@dimen/space_sm"
+            android:paddingEnd="@dimen/screen_gutter"
+            android:paddingBottom="@dimen/space_lg">
+
+            <!-- ===== Who is signed in ============================== -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_md">
+
+                    <!--
+                      The initials, drawn on a filled circle.
+                      A photo would need uploading, storing and checking.
+                      Initials say this is your account with none of that.
+                    -->
+                    <TextView
+                        android:id="@+id/tvAvatar"
+                        android:layout_width="@dimen/avatar_size"
+                        android:layout_height="@dimen/avatar_size"
+                        android:background="@drawable/bg_circle_primary_container"
+                        android:gravity="center"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        android:textStyle="bold"
+                        tools:text="KP" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_md"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvSignedInAs"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            tools:text="Kamal Perera" />
+
+                        <TextView
+                            android:id="@+id/tvNic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_xs"
+                            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+                            tools:text="NIC: 199012345678" />
+
+                        <TextView
+                            android:id="@+id/tvRole"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+                            tools:text="Role: Prosumer" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== The counts. Task E1. Prosumer only. =========== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_md">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvPendingCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                                android:textColor="@color/status_warning"
+                                android:textStyle="bold"
+                                tools:text="2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dash_pending"
+                                android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                        </LinearLayout>
+
+                        <!-- A hairline between the numbers, so they read as
+                             three separate figures and not one long row. -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/colorOutline" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvApprovedCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                                android:textColor="@color/status_success"
+                                android:textStyle="bold"
+                                tools:text="1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dash_approved"
+                                android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/colorOutline" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvCompletedCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                                android:textColor="@color/brand_green"
+                                android:textStyle="bold"
+                                tools:text="5" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dash_completed"
+                                android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:background="?attr/colorOutline" />
+
+                    <TextView
+                        android:id="@+id/tvNextBookingLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:text="@string/dash_next_booking"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <TextView
+                        android:id="@+id/tvNextBooking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="Galle Fort Solar Node, 25 Sep 2026, 8:00 AM" />
+
+                    <TextView
+                        android:id="@+id/tvEnergyTotals"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_sm"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+                        tools:text="Delivered 48 kWh, drawn 12 kWh" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                android:text="@string/home_quick_actions"
+                android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+            <!-- ===== Actions, two to a row ========================= -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnNearbyNodes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <!--
+                      One TextView with a drawable above the words, not an
+                      ImageView and a TextView. Half the views for the same
+                      look, and the whole card is the tap target.
+                    -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/space_sm"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/action_card_height"
+                        android:padding="@dimen/space_md"
+                        android:text="@string/action_nearby_nodes"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        app:drawableTint="?attr/colorPrimary"
+                        app:drawableTopCompat="@drawable/ic_place_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Prosumer sees this one. -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnMyBookings"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <!--
+                      One TextView with a drawable above the words, not an
+                      ImageView and a TextView. Half the views for the same
+                      look, and the whole card is the tap target.
+                    -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/space_sm"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/action_card_height"
+                        android:padding="@dimen/space_md"
+                        android:text="@string/action_my_bookings"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        app:drawableTint="?attr/colorPrimary"
+                        app:drawableTopCompat="@drawable/ic_event_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--
+                  Grid Operator sees this one instead. Task E4.
+                  Filled rather than outlined, because it is the one thing an
+                  operator opens the app to do.
+                -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnScanQr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="?attr/colorPrimaryContainer"
+                    app:strokeWidth="0dp"
+                    tools:visibility="visible">
+
+                    <!--
+                      One TextView with a drawable above the words, not an
+                      ImageView and a TextView. Half the views for the same
+                      look, and the whole card is the tap target.
+                    -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/space_sm"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/action_card_height"
+                        android:padding="@dimen/space_md"
+                        android:text="@string/action_scan_qr"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        app:drawableTint="?attr/colorOnPrimaryContainer"
+                        app:drawableTopCompat="@drawable/ic_qr_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnMyProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <!--
+                      One TextView with a drawable above the words, not an
+                      ImageView and a TextView. Half the views for the same
+                      look, and the whole card is the tap target.
+                    -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/space_sm"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/action_card_height"
+                        android:padding="@dimen/space_md"
+                        android:text="@string/action_my_profile"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        app:drawableTint="?attr/colorPrimary"
+                        app:drawableTopCompat="@drawable/ic_person_24" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Keeps the profile card at half width, so the last row
+                     lines up with the one above it. -->
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSignOut"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="@dimen/screen_gutter"
+        android:layout_marginEnd="@dimen/screen_gutter"
+        android:layout_marginBottom="@dimen/space_sm"
+        android:text="@string/action_sign_out"
+        app:icon="@drawable/ic_logout_24"
+        app:iconGravity="textStart" />
+
+</LinearLayout>
