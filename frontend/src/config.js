@@ -21,9 +21,20 @@
  * ---------------------------------------------------------------------------
  */
 
-// Vite exposes variables beginning with VITE_ to the browser at build time.
-// To override, create a file named .env.local containing:
-//   VITE_API_BASE_URL=http://192.168.1.50:8081/api
+// Set in .env.local. Copy .env.example to .env.local and edit it:
+//
+//     copy .env.example .env.local
+//
+// .env.local is in .gitignore, so each member keeps their own address and
+// nobody overwrites anybody. .env.example is committed, so a new member can
+// see which settings exist without being told.
+//
+// Vite only hands a variable to browser code when its name starts with VITE_.
+// Everything else stays on the build machine, which is a safety rail: a
+// secret cannot reach the browser by accident.
+//
+// The fallback is here so the app still runs with no .env.local at all. It is
+// the common case anyway, both the web app and the API on one laptop.
 export const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8081/api';
 

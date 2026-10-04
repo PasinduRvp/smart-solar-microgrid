@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : network_security_config.xml   (debug builds only)
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-29
+  Description : Lets a debug build talk to the Web API over plain HTTP.
+
+  Why this file is in src/debug
+                Android merges resources, and a file here replaces the one
+                of the same name in src/main for debug builds only. So the
+                release build keeps the strict rule and never sees this.
+
+  Why it is not a list of hosts any more
+                It used to name each laptop IP. That meant the address was
+                written in two places, here and in the Java, and changing
+                only one gave the error:
+                    CLEARTEXT communication to ... not permitted
+
+                The address now lives in local.properties alone. This file
+                cannot read that, so instead of repeating it, a debug build
+                simply allows plain HTTP and the address is checked in one
+                place only.
+
+  Is that safe
+                A debug build is not something anyone installs from a store.
+                It is signed with the debug key, it is not shipped, and it
+                already permits the debugger to read everything in the app.
+                Allowing plain HTTP in it gives away nothing that was not
+                already open.
+
+                The release build is the one that matters, and it now
+                refuses plain HTTP altogether. That is stricter than the
+                named list it replaced.
+  =========================================================================
+-->
+<network-security-config>
+
+    <base-config cleartextTrafficPermitted="true" />
+
+</network-security-config>
