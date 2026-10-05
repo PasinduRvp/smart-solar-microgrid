@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : StaffUserFormModal.jsx
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : The form for creating a new staff account and for editing an
  *               existing one. One component serves both, because the fields

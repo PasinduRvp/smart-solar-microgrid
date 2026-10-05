@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : LoginPage.jsx
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : The sign in screen for Backoffice officers and Grid Operators.
  *
@@ -34,7 +34,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import { useAuth } from '../auth/AuthContext';
 import { ROLES } from '../config';
 import AuthAside, { SIGN_IN_POINTS } from '../components/AuthAside';
-import { IconAlert, IconSun } from '../components/Icons';
+import { IconAlert } from '../components/Icons';
 
 export default function LoginPage() {
   const [identifier, setIdentifier] = useState('');
@@ -119,7 +119,7 @@ export default function LoginPage() {
         <div className="auth-form-wrap">
           {/* Shown only on phones, where the dark panel is hidden. */}
           <Link to="/" className="auth-mobile-brand text-decoration-none">
-            <IconSun size={22} />
+            <img src="/logo.png" alt="" width="26" height="26" className="brand-logo" />
             <span className="fw-semibold">Smart Solar Microgrid</span>
           </Link>
 
