@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ReservationResponseDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-19
  * Description : A reservation as returned to the clients. This is also what the
  *               mobile application shows on the summary screen after a booking

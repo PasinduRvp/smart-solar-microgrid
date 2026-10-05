@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : UpdateReservationRequestDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-19
  * Description : A request to change an existing booking: move it to a different
  *               window, or change the amount or direction of energy.

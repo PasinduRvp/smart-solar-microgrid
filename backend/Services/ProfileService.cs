@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ProfileService.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : Vidvanga W A U (IT 23293694)
  * Created     : 2026-09-20
  * Description : Self service account operations. Every method here acts on the
  *               caller's own account and on no other.

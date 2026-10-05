@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : IReservationService.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-19
  * Description : Contract for the reservation lifecycle, from a prosumer's
  *               request through approval, QR verification and completion.

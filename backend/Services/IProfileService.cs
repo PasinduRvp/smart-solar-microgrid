@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : IProfileService.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : Vidvanga W A U (IT 23293694)
  * Created     : 2026-09-20
  * Description : Contract for the account operations a signed in user performs
  *               on themselves: viewing their profile, editing it, and changing

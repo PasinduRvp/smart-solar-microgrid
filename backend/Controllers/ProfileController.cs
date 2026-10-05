@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ProfileController.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : Vidvanga W A U (IT 23293694)
  * Created     : 2026-09-20
  * Description : "My account" endpoints. Every signed in user — Backoffice
  *               officer, Grid Operator or Prosumer — uses these to view and

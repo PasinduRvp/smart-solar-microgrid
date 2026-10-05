@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : EnergyReservation.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-17
  * Description : A prosumer's booking of an energy trading slot at a microgrid
  *               node, from initial request through to a completed transfer.

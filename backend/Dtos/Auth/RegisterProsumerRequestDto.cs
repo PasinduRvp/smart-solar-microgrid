@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : RegisterProsumerRequestDto.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : Vidvanga W A U (IT 23293694)
  * Created     : 2026-09-19
  * Description : Self registration details posted from the Android application.
  *               Only prosumers may register themselves; Backoffice and Grid

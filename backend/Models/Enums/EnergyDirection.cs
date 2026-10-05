@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : EnergyDirection.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-17
  * Description : Which way the energy flows in a trade: the prosumer either feeds power into the microgrid or draws it out.
  *

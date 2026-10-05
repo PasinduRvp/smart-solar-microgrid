@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ReservationStatus.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-17
  * Description : Lifecycle state of an energy slot reservation, from request through to completed energy transfer.
  *

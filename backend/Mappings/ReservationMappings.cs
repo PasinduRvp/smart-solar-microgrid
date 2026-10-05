@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ReservationMappings.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-19
  * Description : Projects reservation entities onto their response DTO, filling
  *               in the node and prosumer names and the rule driven flags.

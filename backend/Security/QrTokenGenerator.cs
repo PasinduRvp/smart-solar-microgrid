@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : QrTokenGenerator.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : L K P Yasith (IT 23380196)
  * Created     : 2026-09-19
  * Description : Produces the secret token encoded into a prosumer's transaction
  *               QR code.
