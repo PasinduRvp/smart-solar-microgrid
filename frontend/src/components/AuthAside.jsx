@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : AuthAside.jsx
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : The dark panel beside the sign in and registration forms,
  *               carrying the brand and a short reminder of what the system
@@ -23,7 +23,7 @@
  */
 
 import { Link } from 'react-router-dom';
-import { IconCalendar, IconPin, IconShieldUser, IconSun } from './Icons';
+import { IconCalendar, IconPin, IconShieldUser } from './Icons';
 
 /**
  * @param {object} props
@@ -34,9 +34,7 @@ export default function AuthAside({ heading, points }) {
   return (
     <aside className="auth-aside">
       <Link to="/" className="d-flex align-items-center gap-2 text-decoration-none text-white">
-        <span className="text-warning">
-          <IconSun size={22} />
-        </span>
+        <img src="/logo.png" alt="" width="30" height="30" className="brand-logo" />
         <span className="fw-semibold">Smart Solar Microgrid</span>
       </Link>
 
