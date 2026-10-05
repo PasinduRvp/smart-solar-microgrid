@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : activity_my_bookings.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : L K P Yasith (IT 23380196)
+  Created     : 2026-09-20
+  Description : Every booking belonging to the signed in prosumer.
+                It is the way in to tasks D3 and D4.
+
+  Layout      A toolbar, then the list. The empty message sits in the middle
+               and is only shown when there are no bookings at all.
+
+  Same card style as the nearby nodes list, so the two screens feel like
+  parts of one app rather than two separate ones.
+  =========================================================================
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.booking.MyBookingsActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingStart="@dimen/space_sm"
+        android:paddingEnd="@dimen/space_sm"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        app:title="@string/bookings_title"
+        app:titleTextAppearance="?attr/textAppearanceTitleLarge" />
+
+    <!--
+      Search and filter. Task E2.
+
+      Both work on the list already downloaded, not by asking the server
+      again. The list is one prosumer own bookings, so it is small, and
+      filtering it on the phone is instant. A call per keystroke would be
+      slower and would waste data.
+    -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSearch"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_gutter"
+        android:layout_marginEnd="@dimen/screen_gutter"
+        android:hint="@string/bookings_search_hint"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_search_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sm"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/screen_gutter"
+        android:paddingEnd="@dimen/screen_gutter"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipsStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true" />
+
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_sm"
+        android:layout_weight="1">
+
+        <!--
+          Pull down to refresh. A booking can be approved by an operator
+          while this screen is open, so the user needs a way to ask again
+          without leaving and coming back.
+        -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/screen_gutter"
+                android:paddingEnd="@dimen/screen_gutter"
+                android:paddingBottom="@dimen/space_lg"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_booking" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!--
+          The empty state. An icon above the words, because a single line of
+          grey text in the middle of a blank screen reads as something that
+          failed to load rather than as a screen with nothing in it yet.
+        -->
+        <!--
+          The empty state. An icon above the words, because one line of
+          grey text alone in the middle of a screen reads as something
+          that failed to load rather than a screen with nothing in it.
+        -->
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/space_md"
+            android:gravity="center_horizontal"
+            android:paddingStart="@dimen/screen_gutter"
+            android:paddingEnd="@dimen/screen_gutter"
+            android:text="@string/bookings_empty"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+            android:visibility="gone"
+            app:drawableTint="?attr/colorOnSurfaceVariant"
+            app:drawableTopCompat="@drawable/ic_event_24"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+</LinearLayout>

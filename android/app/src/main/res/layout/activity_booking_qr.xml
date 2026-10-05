@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : activity_booking_qr.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : L K P Yasith (IT 23380196)
+  Created     : 2026-09-20
+  Description : The transaction QR code of an approved booking. Task E3.
+
+  A white card behind the code
+               The card is always white, whatever the theme. A QR code needs
+               strong contrast, and black squares on a dark grey background
+               can fail to scan. The card gives the quiet zone a scanner
+               looks for.
+
+  Large on purpose
+               The code fills most of the width. A small code has small
+               squares, and a phone camera held at arm length across a
+               counter struggles with those.
+  =========================================================================
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.booking.BookingQrActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingStart="@dimen/space_sm"
+        android:paddingEnd="@dimen/space_sm"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        app:title="@string/qr_title"
+        app:titleTextAppearance="?attr/textAppearanceTitleLarge" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_gutter"
+            android:paddingTop="@dimen/space_md"
+            android:paddingEnd="@dimen/screen_gutter"
+            android:paddingBottom="@dimen/space_xl">
+
+            <TextView
+                android:id="@+id/tvNode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Solar.Title"
+                tools:text="Galle Fort Solar Node" />
+
+            <TextView
+                android:id="@+id/tvWhen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="?attr/colorPrimary"
+                tools:text="25 Sep 2026, 8:00 AM" />
+
+            <!-- Always white. A scanner needs the contrast. -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="2dp">
+
+                <!--
+                  tools:ignore is deliberate. Lint suggests one TextView with
+                  a compound drawable, but the image is a QR bitmap made at
+                  run time and it has to fill the card. A compound drawable
+                  cannot be sized like that, and a small code does not scan.
+                -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_lg"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <!--
+                      wrap_content with adjustViewBounds, NOT 0dp.
+                      In a vertical LinearLayout a height of 0dp with no
+                      weight means zero pixels, and the code is then drawn
+                      into a view nobody can see.
+                      The code is square, so the height follows the width.
+                    -->
+                    <ImageView
+                        android:id="@+id/imgQr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/qr_title"
+                        tools:layout_height="280dp"
+                        tools:src="@drawable/ic_solar_24" />
+
+                    <TextView
+                        android:id="@+id/tvNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textColor="@color/ink"
+                        tools:text="RES-000123" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                android:text="@string/qr_help"
+                android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_lg"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

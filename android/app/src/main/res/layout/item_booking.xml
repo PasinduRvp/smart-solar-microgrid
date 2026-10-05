@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : item_booking.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : L K P Yasith (IT 23380196)
+  Created     : 2026-09-20
+  Description : One booking in the My bookings list.
+
+  Layout      Node name and status on the top line. The status is coloured,
+               so the state of each booking can be read down the list at a
+               glance. Then when it is, and how much energy.
+               Change and Cancel sit at the bottom of the card.
+
+  The buttons follow the server
+               They are hidden when the server says canBeModified or
+               canBeCancelled is false. That is business rules BR-2 and BR-3.
+               A line of text then explains why, instead of leaving the user
+               to wonder where the buttons went.
+  =========================================================================
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_sm"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="0dp"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_md">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                tools:text="Galle Fort Solar Node" />
+
+            <!--
+              A pill, not plain coloured text. The shape is tinted in code
+              with a faded copy of the status colour, so the word reads as a
+              badge and the list can be scanned down the right hand edge.
+            -->
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_sm"
+                android:background="@drawable/bg_status_pill"
+                android:paddingStart="@dimen/space_sm"
+                android:paddingTop="@dimen/space_xs"
+                android:paddingEnd="@dimen/space_sm"
+                android:paddingBottom="@dimen/space_xs"
+                android:textAppearance="?attr/textAppearanceLabelMedium"
+                android:textStyle="bold"
+                tools:text="Pending" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+            tools:text="RES-000123" />
+
+        <TextView
+            android:id="@+id/tvWhen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            tools:text="25 Sep 2026, 8:00 AM" />
+
+        <TextView
+            android:id="@+id/tvEnergy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+            tools:text="12 kWh, Deliver to grid" />
+
+        <TextView
+            android:id="@+id/tvLocked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/bookings_locked"
+            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <!--
+          Only shown once the booking is approved. The server issues the
+          code then, and not before. That is business rule BR-7.
+        -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShowQr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/action_show_qr"
+            android:visibility="gone"
+            app:icon="@drawable/ic_qr_24"
+            app:iconGravity="textStart"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/groupActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChange"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/action_change" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_sm"
+                android:layout_weight="1"
+                android:text="@string/action_cancel_booking"
+                android:textColor="?attr/colorError"
+                app:strokeColor="?attr/colorError" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

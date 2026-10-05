@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : ProtectedRoute.jsx
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : M T A J Yapa (IT 23278530)
  * Created     : 2026-09-20
  * Description : Wraps a route so it can only be opened by a signed in user,
  *               and optionally only by particular roles.
