@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : dialog_cancel_booking.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : L K P Yasith (IT 23380196)
+  Created     : 2026-09-20
+  Description : Asks why a booking is being cancelled. Task D4.
+
+  Why ask at all
+               The server will not accept a cancellation without a reason,
+               and it keeps the text on the booking. A Grid Operator can then
+               see why a window was given up, not only that it was.
+
+  The padding is set here because an AlertDialog does not add any around a
+  custom view. Without it the box would touch the edges of the dialog.
+  =========================================================================
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_lg"
+    android:paddingTop="@dimen/space_sm"
+    android:paddingEnd="@dimen/space_lg"
+    android:paddingBottom="@dimen/space_xs">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilReason"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cancel_reason_hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="textCapSentences"
+            android:maxLength="200"
+            android:maxLines="2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : activity_booking_summary.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : L K P Yasith (IT 23380196)
+  Created     : 2026-09-20
+  Description : Shown after a booking is made, changed or cancelled.
+                Task D5.
+
+  Why a whole screen and not a toast
+                The assignment asks for a summary after each action, and it
+                carries its own marks. A toast disappears in two seconds and
+                cannot be read back.
+
+                This screen states what happened, shows exactly what is
+                saved, and waits for the user to tap Done. The user can
+                check the date and time before leaving.
+
+  One screen for all three actions
+                Create, change and cancel show the same facts. Only the
+                heading, the note and the colour change. Three layouts would
+                be the same file three times.
+  =========================================================================
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.booking.BookingSummaryActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingStart="@dimen/space_md"
+        android:paddingEnd="@dimen/space_md"
+        app:contentInsetStart="0dp"
+        app:title="@string/summary_title"
+        app:titleTextAppearance="?attr/textAppearanceTitleLarge" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_gutter"
+            android:paddingTop="@dimen/space_md"
+            android:paddingEnd="@dimen/screen_gutter"
+            android:paddingBottom="@dimen/space_xl">
+
+            <!-- Green for done, red for cancelled. Set in code. -->
+            <TextView
+                android:id="@+id/tvHeadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Solar.Title"
+                tools:text="Booking confirmed" />
+
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+                tools:text="Your booking is waiting for a Grid Operator to approve it." />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="0dp"
+                app:strokeColor="?attr/colorOutline"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_md">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/summary_label_number"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <TextView
+                        android:id="@+id/tvNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:textStyle="bold"
+                        tools:text="RES-000123" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:text="@string/summary_label_node"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <TextView
+                        android:id="@+id/tvNode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="Galle Fort Solar Node" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:text="@string/summary_label_when"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <TextView
+                        android:id="@+id/tvWhen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="25 Sep 2026, 8:00 AM" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:text="@string/summary_label_energy"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <TextView
+                        android:id="@+id/tvEnergy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="12 kWh" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:text="@string/summary_label_direction"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <TextView
+                        android:id="@+id/tvDirection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        tools:text="Deliver to grid" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:text="@string/summary_label_status"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:textStyle="bold"
+                        tools:text="Pending" />
+
+                    <!-- Only shown after a cancellation. -->
+                    <LinearLayout
+                        android:id="@+id/groupReason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_md"
+                            android:text="@string/summary_label_reason"
+                            android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                        <TextView
+                            android:id="@+id/tvReason"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            tools:text="Panels under repair" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginStart="@dimen/screen_gutter"
+        android:layout_marginEnd="@dimen/screen_gutter"
+        android:layout_marginBottom="@dimen/space_lg"
+        android:text="@string/action_done"
+        android:textStyle="bold" />
+
+</LinearLayout>

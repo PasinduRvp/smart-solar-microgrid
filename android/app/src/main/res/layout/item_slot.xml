@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : item_slot.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : L K P Yasith (IT 23380196)
+  Created     : 2026-09-20
+  Description : One booking window in the picker.
+
+  checkable    The card can be selected. Material then draws the chosen one
+               with a filled background, so the pick is visible with no extra
+               tick icon.
+
+  A full window is still shown
+               It is drawn faded and cannot be selected. Hiding it would make
+               the list jump about as other prosumers book, and the user
+               would not know the window exists at all.
+  =========================================================================
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardSlot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_sm"
+    android:checkable="true"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="0dp"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_md">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            tools:text="08:00 to 09:00" />
+
+        <TextView
+            android:id="@+id/tvCapacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_sm"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            tools:text="3 of 5 free" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
