@@ -435,6 +435,8 @@ issuer, audience, time zone and Swagger on or off.
 | [docs/SYSTEM_FLOW_GUIDE.md](docs/SYSTEM_FLOW_GUIDE.md) | Full end-to-end guide: request flow, security, setup, viva answers |
 | [docs/use-case-diagram.md](docs/use-case-diagram.md) | Actors, use cases and relationships |
 | [docs/use-case-diagram.drawio](docs/use-case-diagram.drawio) | Use case diagram (draw.io) |
+| [docs/dfd-level-0.drawio](docs/dfd-level-0.drawio) | Data flow diagram, Level 0 (context) |
+| [docs/dfd-level-1.drawio](docs/dfd-level-1.drawio) | Data flow diagram, Level 1 (7 processes, 4 data stores) |
 | [docs/diagrams/](docs/diagrams/) | Architecture, use case, DFD and database diagrams (draw.io and PNG) |
 | [docs/TEAM_WORK_DIVISION.md](docs/TEAM_WORK_DIVISION.md) | Who owns which part |
 | [docs/VIVA_GUIDE_SI_EN.md](docs/VIVA_GUIDE_SI_EN.md) | Viva preparation |
