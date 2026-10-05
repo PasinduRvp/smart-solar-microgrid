@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : dimens.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : The spacing scale every screen measures from.
+
+  Why a scale and not free numbers
+                Margins chosen per screen drift apart. 12dp here, 14dp
+                there, 20dp somewhere else. None of them looks broken on
+                its own. But the screens stop lining up with each other.
+
+                These are all multiples of 8dp. That is the grid the
+                Android layouts use. Anything built from them lines up.
+
+                Change a value here and every screen moves together.
+  =========================================================================
+-->
+<resources>
+
+    <!-- Spacing scale -->
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">24dp</dimen>
+    <dimen name="space_xl">32dp</dimen>
+
+    <!-- The left and right margin every screen shares. Content that starts at
+         the same x position on every screen is the single biggest thing that
+         makes an app feel aligned. -->
+    <!--
+      20dp, not 24dp. 24dp was leaving the content columns narrow on a
+      normal phone. 20dp gives back 8dp of width on every screen and still
+      keeps the text clear of the rounded edges of the display.
+    -->
+    <dimen name="screen_gutter">20dp</dimen>
+
+    <!-- Vertical gap between two form fields. -->
+    <dimen name="field_gap">16dp</dimen>
+
+    <!-- 52dp: comfortably above the 48dp minimum touch target. -->
+    <dimen name="button_height">52dp</dimen>
+
+    <!--
+      20dp. A larger radius is what makes a card read as a soft panel
+      instead of a box with the corners filed off.
+    -->
+    <dimen name="card_radius">20dp</dimen>
+
+    <!-- Breathing room inside a card. Never less than 16dp. -->
+    <dimen name="card_padding">16dp</dimen>
+
+    <!-- Gap between two cards, or between two sections of a form. -->
+    <dimen name="section_gap">12dp</dimen>
+
+    <!--
+      16dp, not a full pill. A fully rounded wide button looks like a
+      capsule stretched across the screen. 16dp matches the cards, so the
+      button belongs to the same set of shapes as everything above it.
+    -->
+    <dimen name="button_radius">16dp</dimen>
+
+    <!-- Filter chips. 40dp is the smallest comfortable tap height. -->
+    <dimen name="chip_height">40dp</dimen>
+    <dimen name="chip_radius">12dp</dimen>
+
+    <!--
+      The quick action cards on the home screen, two to a row.
+
+      Without a fixed height each card is only as tall as its own label, so
+      "Nearby nodes" wrapping to two lines while "Scan QR" stayed on one
+      left the pair uneven and the row looked broken. A set height makes
+      every card in the grid match whatever its label does.
+    -->
+    <dimen name="action_card_height">96dp</dimen>
+    <dimen name="avatar_size">56dp</dimen>
+    <dimen name="brand_mark_size">84dp</dimen>
+
+</resources>

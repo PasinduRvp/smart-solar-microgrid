@@ -2,7 +2,7 @@
  * ---------------------------------------------------------------------------
  * File        : IMongoContext.cs
  * Project     : Smart Solar Microgrid Trading System — SE4040 Assignment 1
- * Author      : <Your Full Name> (<IT Number>)
+ * Author      : NIMSARA R V P P (IT 23215306)
  * Created     : 2026-09-16
  * Description : Abstraction over the MongoDB database connection. Every layer
  *               above data access depends on this interface rather than on the

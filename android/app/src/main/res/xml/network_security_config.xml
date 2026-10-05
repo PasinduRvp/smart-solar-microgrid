@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : network_security_config.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : The network rule for release builds. HTTPS only.
+
+  What changed and why
+                This file used to name each laptop IP so plain HTTP would
+                work during the demo. That put the server address in two
+                places, here and in the Java, and changing only one gave:
+                    CLEARTEXT communication to ... not permitted
+
+                The address now lives in android/local.properties on its
+                own. A resource file cannot read that, so rather than keep
+                a second copy of it, the permission was moved to a debug
+                only version of this file in src/debug.
+
+  What this means
+                Release build : plain HTTP is refused outright. Stricter
+                                than the old named list.
+                Debug build   : src/debug/res/xml replaces this file and
+                                allows plain HTTP. That is the build the
+                                demo runs on, because IIS on a laptop has
+                                no certificate a phone would trust.
+
+  If a release build ever has to reach a plain HTTP server, name that host
+  here in a domain-config. Do not turn cleartext on for everything.
+  =========================================================================
+-->
+<network-security-config>
+
+    <base-config cleartextTrafficPermitted="false" />
+
+</network-security-config>

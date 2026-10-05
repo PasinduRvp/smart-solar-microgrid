@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : colors.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Description : The brand colours, named by what they are for.
+
+  A name like brand_green says what a colour is for. Changing the shade
+  later is then one edit here, not a search for a hex code in every layout.
+
+  ON CONTRAST
+        The brand greens were checked against white before being used.
+
+          Eco Green    #3A9D3F  3.46 : 1 on white
+          Light Green  #6DBE45  2.31 : 1
+          Energy Green #7BCB42  2.01 : 1
+
+        WCAG asks for 4.5 : 1 for normal text. So none of those three may
+        carry white button text or act as a link colour on a white page.
+        They are fill and accent colours.
+
+        brand_green_deep #2F7D33 was added for that job. It is the same
+        hue and reaches 5.12 : 1, so buttons and links pass.
+
+        On the navy surface the brighter greens are excellent, which is why
+        dark mode uses Energy Green (7.30 : 1) as its primary.
+  =========================================================================
+-->
+<resources>
+
+    <!-- Brand -->
+    <color name="brand_navy">#102A43</color>
+    <color name="brand_navy_soft">#1B3A57</color>
+
+    <!-- Interactive green. Passes on white, so buttons and links use it. -->
+    <!--
+      Nudged from #2F7D33 when the page behind it became tinted.
+
+      On the old white page this green read 4.5 to 1 and passed. On the new
+      #E9F0E9 page it dropped to 4.41, just under what WCAG asks for normal
+      text, and it is used for normal text: the date under the node name on
+      the QR screen sits straight on the page at 16sp.
+
+      #2C7630 is the same green two shades down. 4.84 on the page, 5.61 on
+      a white card, and 5.61 for white text on it as a button fill, so
+      every place it is used now clears the bar.
+    -->
+    <color name="brand_green_deep">#2C7630</color>
+    <color name="brand_green_deeper">#246A28</color>
+
+    <!-- Fill and accent greens. Not for small text on white. -->
+    <color name="brand_green">#3A9D3F</color>
+    <color name="brand_green_light">#6DBE45</color>
+    <color name="brand_green_energy">#7BCB42</color>
+    <color name="brand_green_container">#DCEFDA</color>
+
+    <!-- Neutrals -->
+    <color name="ink">#102A43</color>
+    <color name="ink_muted">#5A6B7C</color>
+    <!--
+      The page is tinted and the cards on it are white.
+
+      It was the other way round: a white page with cards a shade off
+      white. Measured, those two were 1.08 apart, which is not enough to
+      see. While the cards still had a grey outline round them that did not
+      matter, because the line drew the edge. The outline has gone, so the
+      tone has to do the work on its own and the two had to separate.
+
+      This way round measures 1.16, near the 1.28 the dark theme already
+      had, and white cards on a tinted page is the plainer look of the two.
+
+      Text was checked against the new page colour, not only against the
+      cards: the body ink reads 13.0 to 1 on it and the muted ink 4.8 to 1,
+      so both still clear the 4.5 that WCAG asks for.
+    -->
+    <color name="surface">#E9F0E9</color>
+    <color name="surface_container">#FFFFFF</color>
+
+    <!-- A step between the two, for a strip that is neither page nor card. -->
+    <color name="surface_container_low">#F4F8F4</color>
+    <color name="surface_container_high">#FFFFFF</color>
+    <color name="hairline">#DDE5DC</color>
+
+    <!-- Dark theme neutrals, tinted towards the brand navy -->
+    <color name="ink_dark">#F4F8F4</color>
+    <color name="ink_muted_dark">#9FB0C0</color>
+    <color name="surface_dark">#0C1E30</color>
+    <color name="surface_container_dark">#15324C</color>
+    <color name="surface_container_low_dark">#112942</color>
+    <color name="surface_container_high_dark">#1C4162</color>
+
+    <!-- Status: reserved, never reused for decoration -->
+    <color name="status_success">#2F7D33</color>
+    <color name="status_warning">#B7791F</color>
+    <color name="status_danger">#C53030</color>
+
+    <color name="white">#FFFFFFFF</color>
+
+</resources>

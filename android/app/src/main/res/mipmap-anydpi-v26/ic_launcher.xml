@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The adaptive launcher icon, used from Android 8.
+
+  A launcher may mask this to a circle, a squircle or a rounded square,
+  and it can crop the outer third. The logo is therefore padded to the
+  middle 60% of the foreground image, so no part of it is ever cut off.
+
+  The plate is white because the logo itself is drawn in navy and green.
+  On a coloured plate the navy would disappear.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/white" />
+    <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+    <monochrome android:drawable="@mipmap/ic_launcher_foreground" />
+</adaptive-icon>

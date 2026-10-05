@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : bg_status_pill.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Description : The rounded background behind a status word.
+
+  The colour is set in code, not here. Each status has its own colour, and
+  one shape tinted at run time is simpler than four almost equal files.
+
+  A large corner radius with a short height gives a pill. Using a number
+  bigger than half the height keeps it a pill whatever the text size.
+  =========================================================================
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@android:color/white" />
+    <corners android:radius="100dp" />
+</shape>

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : activity_new_booking.xml
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : Book a window, or change a booking. Tasks D1, D2 and D3.
+
+  Three cards, numbered
+               The screen asks for three things: a day, a window, then the
+               energy and its direction. Each one is its own card with a
+               number on it. Before, all of it was stacked straight onto
+               the page background, so there was nothing to show where one
+               question ended and the next began.
+
+               The numbers are there because the steps are not independent.
+               The day decides which windows exist, so they have to be done
+               in order, and a number says that without a sentence.
+
+  The button is pinned
+               Confirm sits in a bar at the bottom of the screen instead of
+               at the end of the scroll. The user can always see the action
+               they are working towards, and does not have to scroll back
+               down to find it after picking a window.
+
+  Only 7 day chips
+               Business rule BR-1 says a booking must be inside the next 7
+               days. The picker only offers those 7 days, so a day the
+               server would refuse can never be chosen.
+
+  One layout for both jobs
+               Booking a new window and changing an old one ask for exactly
+               the same things. Two layouts would be the same file twice.
+               The screen changes its title and its button text instead.
+  =========================================================================
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.booking.NewBookingActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingStart="@dimen/space_sm"
+        android:paddingEnd="@dimen/space_sm"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        tools:title="Book a window" />
+
+    <!--
+      A NestedScrollView, not a plain ScrollView.
+
+      The window list inside has its own height and its own scrollbar. A
+      plain ScrollView does not take part in nested scrolling, so a drag
+      that started on the list was swallowed by the page and the windows
+      below the fold could not be reached. A NestedScrollView passes the
+      drag to the list first, and takes over only once the list has hit
+      its end.
+    -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_gutter"
+            android:paddingTop="@dimen/space_xs"
+            android:paddingEnd="@dimen/screen_gutter"
+            android:paddingBottom="@dimen/space_lg">
+
+            <!-- ===== The node being booked ============================== -->
+
+            <TextView
+                android:id="@+id/tvNodeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Solar.Title"
+                tools:text="Galle Fort Solar Node" />
+
+            <!-- ===== 1. The day ======================================== -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/card_padding"
+                    android:paddingBottom="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/card_padding"
+                        android:paddingEnd="@dimen/card_padding"
+                        android:text="@string/booking_step_day"
+                        android:textAppearance="@style/TextAppearance.Solar.SectionLabel" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:paddingStart="@dimen/card_padding"
+                        android:paddingEnd="@dimen/card_padding"
+                        android:text="@string/booking_pick_day_help"
+                        android:textAppearance="@style/TextAppearance.Solar.Subtitle" />
+
+                    <!--
+                      The chips scroll sideways. Seven of them do not fit
+                      across a phone, and squeezing them would make each one
+                      too small to tap.
+
+                      clipToPadding is off so the first and last chip are not
+                      cut in half while the row is being scrolled.
+                    -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:clipToPadding="false"
+                        android:paddingStart="@dimen/card_padding"
+                        android:paddingEnd="@dimen/card_padding"
+                        android:scrollbars="none">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipsDays"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:chipSpacingHorizontal="@dimen/space_sm"
+                            app:selectionRequired="true"
+                            app:singleLine="true"
+                            app:singleSelection="true" />
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== 2. The window ===================================== -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/section_gap">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/card_padding"
+                    android:paddingBottom="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/card_padding"
+                        android:paddingEnd="@dimen/card_padding"
+                        android:text="@string/booking_step_window"
+                        android:textAppearance="@style/TextAppearance.Solar.SectionLabel" />
+
+                    <!--
+                      The list and the empty message share one box.
+
+                      Before, the list kept its height even with nothing in
+                      it and the message sat underneath. So a day with no
+                      windows showed a large hole with a line of text
+                      stranded below it.
+
+                      Now only one of the two is ever visible, and the box
+                      keeps the same height either way. The page does not
+                      jump as the user taps from day to day.
+
+                      Fixed height and nested scrolling off: a RecyclerView
+                      inside a ScrollView would otherwise grow to its full
+                      height and the page would scroll twice over.
+                    -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="208dp"
+                        android:layout_marginTop="@dimen/space_sm">
+
+                        <!--
+                          nestedScrollingEnabled is on, so this list scrolls
+                          on its own inside its box. A node open from 06:00
+                          to 20:00 has seven windows and they do not fit in
+                          the height above; with it off, the ones below the
+                          fold could not be reached at all.
+
+                          scrollbars shows the thin bar while the user
+                          drags, which is the only thing telling them there
+                          is more underneath.
+                        -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/listSlots"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="true"
+                            android:paddingStart="@dimen/card_padding"
+                            android:paddingEnd="@dimen/card_padding"
+                            android:scrollbars="vertical"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/item_slot" />
+
+                        <!--
+                          The text is set in code, because it names the
+                          chosen day. tools:text is only for the preview.
+                        -->
+                        <TextView
+                            android:id="@+id/tvNoWindows"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/space_xl"
+                            android:paddingEnd="@dimen/space_xl"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.Solar.Subtitle"
+                            android:visibility="gone"
+                            tools:text="No booking windows on Tue 29 Sep."
+                            tools:visibility="visible" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== 3. Energy and direction =========================== -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/section_gap">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/booking_step_energy"
+                        android:textAppearance="@style/TextAppearance.Solar.SectionLabel" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilEnergy"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:hint="@string/booking_energy_hint"
+                        app:helperText="@string/booking_energy_helper"
+                        app:helperTextEnabled="true"
+                        app:suffixText="kWh">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEnergy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:text="@string/booking_direction"
+                        android:textAppearance="@style/TextAppearance.Solar.SectionLabel" />
+
+                    <!--
+                      A toggle group, not a dropdown. There are only two
+                      choices and both matter, so showing both is clearer
+                      than hiding one.
+                    -->
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/toggleDirection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_sm"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnDeliver"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_weight="1"
+                            android:text="@string/booking_deliver" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnDraw"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_weight="1"
+                            android:text="@string/booking_draw" />
+
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!--
+      The action bar at the foot of the screen.
+
+      It sits outside the ScrollView, so it stays put while the page moves
+      behind it. The surface colour is what separates it from the cards; it
+      is not a card itself, because it is not content.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_gutter"
+        android:paddingTop="@dimen/space_sm"
+        android:paddingEnd="@dimen/screen_gutter"
+        android:paddingBottom="@dimen/space_md">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_sm"
+            android:indeterminate="true"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:textStyle="bold"
+            tools:text="Confirm booking" />
+
+    </LinearLayout>
+
+</LinearLayout>

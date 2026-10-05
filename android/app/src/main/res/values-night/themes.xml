@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =========================================================================
+  File        : values-night/themes.xml  (dark)
+  Project     : Smart Solar Microgrid Trading System - SE4040 Assignment 1
+  Author      : NIMSARA R V P P (IT 23215306)
+  Created     : 2026-09-20
+  Description : The dark theme.
+
+  Android picks this file by itself when the phone is set to dark mode.
+
+  The brand amber is made lighter here. The full strength shade is too dim
+  to read on a dark background. So dark mode is a chosen set of colours.
+  It is not the light theme turned upside down.
+  =========================================================================
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.SolarMicrogrid" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/brand_green_energy</item>
+        <item name="colorOnPrimary">#0A2410</item>
+        <item name="colorPrimaryContainer">@color/brand_green_deep</item>
+        <item name="colorOnPrimaryContainer">@color/brand_green_container</item>
+
+        <item name="colorSecondary">@color/brand_green_light</item>
+        <item name="colorOnSecondary">#0A2410</item>
+        <item name="colorSecondaryContainer">@color/brand_navy_soft</item>
+        <item name="colorOnSecondaryContainer">@color/brand_green_container</item>
+
+        <item name="colorError">#FC8181</item>
+
+        <item name="android:colorBackground">@color/surface_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorSurfaceContainer">@color/surface_container_dark</item>
+        <item name="colorSurfaceContainerLow">@color/surface_container_low_dark</item>
+        <item name="colorSurfaceContainerHigh">@color/surface_container_high_dark</item>
+        <item name="colorOnSurface">@color/ink_dark</item>
+        <item name="colorOnSurfaceVariant">@color/ink_muted_dark</item>
+        <item name="colorOutline">#254866</item>
+
+        <item name="android:statusBarColor">@color/surface_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="materialCardViewStyle">@style/Widget.Solar.Card</item>
+        <item name="chipStyle">@style/Widget.Solar.Chip</item>
+        <item name="materialButtonStyle">@style/Widget.Solar.Button</item>
+        <item name="toolbarStyle">@style/Widget.Solar.Toolbar</item>
+    </style>
+
+</resources>
